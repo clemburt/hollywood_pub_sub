@@ -3,23 +3,23 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - '**'          # Trigger on push to any branch
+      - '**'  # Run on push to any branch
   pull_request:
     branches:
-      - '**'          # Trigger on PRs to any branch
-  workflow_dispatch:   # Allow manual trigger from GitHub UI
+      - '**'  # Run on PRs to any branch
+  workflow_dispatch:  # Allow manual trigger
 
 env:
-  IMAGE_NAME: ghcr.io/clemburt/hollywood_pub_sub:latest  # Docker image name and tag
+  IMAGE_NAME: ghcr.io/clemburt/hollywood_pub_sub:latest
 
 jobs:
   build:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3  # Checkout source code
+      - uses: actions/checkout@v3
 
-      # Authenticate to GitHub Container Registry (GHCR)
+      # Authenticate to GitHub Container Registry
       - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
@@ -27,11 +27,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build the Docker image with the specified tag
+      # Build the Docker image (pull base image to ensure freshness)
       - name: Build Docker image
         run: docker build --pull -t ${{ env.IMAGE_NAME }} .
 
-      # Push the built image to GHCR
+      # Push to GHCR
       - name: Push Docker image
         run: docker push ${{ env.IMAGE_NAME }}
 
@@ -40,12 +40,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v3  # Checkout source code
+      - uses: actions/checkout@v3
 
-      # Run tests using the predefined PDM script (pdm test)
-      - name: Run tests with pdm
+      # Run tests using PDM script (defined in pyproject.toml)
+      - name: Run tests with PDM inside container
         env:
-          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}  # Pass TMDB API key
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
@@ -56,7 +56,6 @@ jobs:
     name: Run Main Script
     runs-on: ubuntu-latest
     needs: build
-    # Only run on main branch pushes or PRs targeting main with 'CICD' label
     if: |
       github.ref == 'refs/heads/main' ||
       (
@@ -65,9 +64,9 @@ jobs:
         contains(github.event.pull_request.labels.*.name, 'CICD')
       )
     steps:
-      - uses: actions/checkout@v3  # Checkout source code
+      - uses: actions/checkout@v3
 
-      # Run the main CLI command from the ENTRYPOINT
+      # Execute the main CLI command explicitly
       - name: Run main CLI command
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
@@ -75,4 +74,7 @@ jobs:
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
             ${{ env.IMAGE_NAME }} \
-            run --api_key "$TMDB_API_KEY" --max_movies_per_composer 10 --winning_threshold 5
+            hollywood_pub_sub run \
+              --api_key "$TMDB_API_KEY" \
+              --max_movies_per_composer 10 \
+              --winning_threshold 5
