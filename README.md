@@ -12,10 +12,12 @@
 - [Authors](#authors)
 
 # Purpose
-
-A Publisher-Subscriber simulation game between film **directors** and **composers**, where movies are published and "subscribers" (composers) collect them based on their appearances in the movie list.
-
-This project simulates a mini-event-driven system inspired by the publisher-subscriber design pattern.
+A Publisher-Subscriber simulation game between film **directors** and **composers**, using pdm and pydantic:
+- a movie database is built by querying the [TMDb api](https://developer.themoviedb.org/docs/getting-started), retieving details from each movie (title, director, composer, cast, year)
+- then movie announcements are randomly published: a director (publisher) tells that he is working on a movie from the database and looking for a composer
+- all composers (subscribers) from the database subscribe to these announcements, and wait for a movie in which they are credited
+- if that is the case, they take the assignment
+- the winner is the 1st composer to secure a given number of contracts
 
 # Installation
 Make sure you have [PDM](https://pdm.fming.dev/) installed.
