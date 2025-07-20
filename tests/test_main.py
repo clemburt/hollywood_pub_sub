@@ -1,0 +1,86 @@
+import pytest
+from unittest.mock import patch
+
+from hollywood_pub_sub.main import main
+from hollywood_pub_sub.movie import Movie
+from hollywood_pub_sub.movie_database import MovieDatabase
+
+
+def test_main_with_mocked_api(monkeypatch) -> None:
+    """
+    Test the main function with mocked TMDb API calls.
+
+    This test:
+    - Mocks MovieDatabase._fetch_movies_from_api to avoid real HTTP requests.
+    - Uses a fixed set of movies for deterministic behavior.
+    - Verifies that a winner subscriber is declared when threshold is reached.
+    """
+    # Prepare test movies
+    test_movies = [
+        Movie(
+            title="Test Movie 1",
+            director="Director 1",
+            composer="Composer A",
+            cast=["Actor 1", "Actor 2"],
+            year=2000
+        ),
+        Movie(
+            title="Test Movie 2",
+            director="Director 2",
+            composer="Composer B",
+            cast=["Actor 3", "Actor 4"],
+            year=2001
+        ),
+        Movie(
+            title="Test Movie 3",
+            director="Director 3",
+            composer="Composer A",
+            cast=["Actor 5"],
+            year=2002
+        ),
+        Movie(
+            title="Test Movie 4",
+            director="Director 4",
+            composer="Composer A",
+            cast=["Actor 6"],
+            year=2003
+        ),
+        Movie(
+            title="Test Movie 5",
+            director="Director 5",
+            composer="Composer A",
+            cast=["Actor 7"],
+            year=2004
+        ),
+    ]
+
+    # Patch the _fetch_movies_from_api to no-op to avoid API calls
+    with patch.object(MovieDatabase, "_fetch_movies_from_api", return_value=None):
+        # Instantiate normally; this will call _fetch_movies_from_api (now no-op)
+        movie_db = MovieDatabase(api_key="fake_api_key", max_movies_per_composer=10)
+
+        # Inject test data manually
+        movie_db.movies = test_movies
+        movie_db.COMPOSERS = ["Composer A", "Composer B"]
+
+        # Patch the MovieDatabase constructor inside main to return our patched instance
+        with patch("hollywood_pub_sub.main.MovieDatabase", return_value=movie_db):
+            # Patch logger to catch winner message
+            with patch("hollywood_pub_sub.logger.logger.info") as mock_logger_info:
+                main(
+                    api_key="fake_api_key",
+                    max_movies_per_composer=10,
+                    winning_threshold=3,
+                )
+
+                # Assert winner log found
+                winner_msgs = [
+                    call.args[0]
+                    for call in mock_logger_info.call_args_list
+                    if "Winner is subscriber composer" in call.args[0]
+                ]
+                assert winner_msgs, "Expected winner log message was not found"
+
+
+if __name__ == "__main__":
+    pytest.main()

@@ -1,0 +1,142 @@
+[
+    {
+        "title": "Star Wars: Episode IV - A New Hope",
+        "director": "George Lucas",
+        "composer": "John Williams",
+        "cast": ["Mark Hamill", "Harrison Ford", "Carrie Fisher"],
+        "year": 1977
+    },
+    {
+        "title": "Jurassic Park",
+        "director": "Steven Spielberg",
+        "composer": "John Williams",
+        "cast": ["Sam Neill", "Laura Dern", "Jeff Goldblum"],
+        "year": 1993
+    },
+    {
+        "title": "The Good, the Bad and the Ugly",
+        "director": "Sergio Leone",
+        "composer": "Ennio Morricone",
+        "cast": ["Clint Eastwood", "Eli Wallach", "Lee Van Cleef"],
+        "year": 1966
+    },
+    {
+        "title": "Once Upon a Time in America",
+        "director": "Sergio Leone",
+        "composer": "Ennio Morricone",
+        "cast": ["Robert De Niro", "James Woods", "Elizabeth McGovern"],
+        "year": 1984
+    },
+    {
+        "title": "Inception",
+        "director": "Christopher Nolan",
+        "composer": "Hans Zimmer",
+        "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
+        "year": 2010
+    },
+    {
+        "title": "The Grand Budapest Hotel",
+        "director": "Wes Anderson",
+        "composer": "Alexandre Desplat",
+        "cast": ["Ralph Fiennes", "Tony Revolori", "Saoirse Ronan"],
+        "year": 2014
+    },
+    {
+        "title": "Chinatown",
+        "director": "Roman Polanski",
+        "composer": "Jerry Goldsmith",
+        "cast": ["Jack Nicholson", "Faye Dunaway", "John Huston"],
+        "year": 1974
+    },
+    {
+        "title": "Jaws",
+        "director": "Steven Spielberg",
+        "composer": "John Williams",
+        "cast": ["Roy Scheider", "Robert Shaw", "Richard Dreyfuss"],
+        "year": 1975
+    },
+    {
+        "title": "The Pink Panther",
+        "director": "Blake Edwards",
+        "composer": "Henry Mancini",
+        "cast": ["Peter Sellers", "Herbert Lom", "Britt Ekland"],
+        "year": 1963
+    },
+    {
+        "title": "Taxi Driver",
+        "director": "Martin Scorsese",
+        "composer": "Bernard Herrmann",
+        "cast": ["Robert De Niro", "Jodie Foster", "Cybill Shepherd"],
+        "year": 1976
+    },
+    {
+        "title": "The Mission",
+        "director": "Roland Joffé",
+        "composer": "Ennio Morricone",
+        "cast": ["Robert De Niro", "Jeremy Irons", "Liam Neeson"],
+        "year": 1986
+    },
+    {
+        "title": "Alien",
+        "director": "Ridley Scott",
+        "composer": "Jerry Goldsmith",
+        "cast": ["Sigourney Weaver", "Tom Skerritt", "John Hurt"],
+        "year": 1979
+    },
+    {
+        "title": "Blade Runner",
+        "director": "Ridley Scott",
+        "composer": "Vangelis",
+        "cast": ["Harrison Ford", "Rutger Hauer", "Sean Young"],
+        "year": 1982
+    },
+    {
+        "title": "The Fugitive",
+        "director": "Andrew Davis",
+        "composer": "James Newton Howard",
+        "cast": ["Harrison Ford", "Tommy Lee Jones", "Sela Ward"],
+        "year": 1993
+    },
+    {
+        "title": "Cape Fear",
+        "director": "Martin Scorsese",
+        "composer": "Bernard Herrmann",
+        "cast": ["Robert De Niro", "Nick Nolte", "Jessica Lange"],
+        "year": 1991
+    },
+    {
+        "title": "The Untouchables",
+        "director": "Brian De Palma",
+        "composer": "Ennio Morricone",
+        "cast": ["Kevin Costner", "Sean Connery", "Robert De Niro"],
+        "year": 1987
+    },
+    {
+        "title": "The Deer Hunter",
+        "director": "Michael Cimino",
+        "composer": "Stanley Myers",
+        "cast": ["Robert De Niro", "Christopher Walken", "Meryl Streep"],
+        "year": 1978
+    },
+    {
+        "title": "The Great Escape",
+        "director": "John Sturges",
+        "composer": "Elmer Bernstein",
+        "cast": ["Steve McQueen", "James Garner", "Richard Attenborough"],
+        "year": 1963
+    },
+    {
+        "title": "Back to the Future",
+        "director": "Robert Zemeckis",
+        "composer": "Alan Silvestri",
+        "cast": ["Michael J. Fox", "Christopher Lloyd", "Lea Thompson"],
+        "year": 1985
+    },
+    {
+        "title": "Misery",
+        "director": "Rob Reiner",
+        "composer": "Marc Shaiman",
+        "cast": ["James Caan", "Kathy Bates", "Richard Farnsworth"],
+        "year": 1990
+    }
+]

@@ -1,0 +1,277 @@
+[
+    {
+        "title": "Citizen Kane",
+        "director": "Orson Welles",
+        "composer": "Bernard Herrmann",
+        "cast": [
+            "Orson Welles",
+            "Joseph Cotten",
+            "Dorothy Comingore"
+        ],
+        "year": 1941
+    },
+    {
+        "title": "Taxi Driver",
+        "director": "Martin Scorsese",
+        "composer": "Bernard Herrmann",
+        "cast": [
+            "Robert De Niro",
+            "Jodie Foster",
+            "Cybill Shepherd"
+        ],
+        "year": 1976
+    },
+    {
+        "title": "North by Northwest",
+        "director": "Alfred Hitchcock",
+        "composer": "Bernard Herrmann",
+        "cast": [
+            "Cary Grant",
+            "Eva Marie Saint",
+            "James Mason"
+        ],
+        "year": 1959
+    },
+    {
+        "title": "The Magnificent Ambersons",
+        "director": "Orson Welles",
+        "composer": "Bernard Herrmann",
+        "cast": [
+            "Joseph Cotten",
+            "Dolores Costello",
+            "Anne Baxter"
+        ],
+        "year": 1942
+    },
+    {
+        "title": "Vertigo",
+        "director": "Alfred Hitchcock",
+        "composer": "Bernard Herrmann",
+        "cast": [
+            "James Stewart",
+            "Kim Novak",
+            "Barbara Bel Geddes"
+        ],
+        "year": 1958
+    },
+    {
+        "title": "Star Trek: The Motion Picture",
+        "director": "Robert Wise",
+        "composer": "Jerry Goldsmith",
+        "cast": [
+            "William Shatner",
+            "Leonard Nimoy",
+            "DeForest Kelley"
+        ],
+        "year": 1979
+    },
+    {
+        "title": "Star Trek V: The Final Frontier",
+        "director": "William Shatner",
+        "composer": "Jerry Goldsmith",
+        "cast": [
+            "William Shatner",
+            "Leonard Nimoy",
+            "DeForest Kelley"
+        ],
+        "year": 1989
+    },
+    {
+        "title": "Star Trek: First Contact",
+        "director": "Jonathan Frakes",
+        "composer": "Jerry Goldsmith",
+        "cast": [
+            "Patrick Stewart",
+            "Jonathan Frakes",
+            "Brent Spiner"
+        ],
+        "year": 1996
+    },
+    {
+        "title": "Star Trek: Insurrection",
+        "director": "Jonathan Frakes",
+        "composer": "Jerry Goldsmith",
+        "cast": [
+            "Patrick Stewart",
+            "Brent Spiner",
+            "Michael Dorn"
+        ],
+        "year": 1998
+    },
+    {
+        "title": "Star Trek: Nemesis",
+        "director": "Stuart Baird",
+        "composer": "Jerry Goldsmith",
+        "cast": [
+            "Patrick Stewart",
+            "Jonathan Frakes",
+            "Brent Spiner"
+        ],
+        "year": 2002
+    },
+    {
+        "title": "Dances with Wolves",
+        "director": "Kevin Costner",
+        "composer": "John Barry",
+        "cast": [
+            "Kevin Costner",
+            "Mary McDonnell",
+            "Graham Greene"
+        ],
+        "year": 1990
+    },
+    {
+        "title": "Out of Africa",
+        "director": "Sydney Pollack",
+        "composer": "John Barry",
+        "cast": [
+            "Robert Redford",
+            "Meryl Streep",
+            "Klaus Maria Brandauer"
+        ],
+        "year": 1985
+    },
+    {
+        "title": "Peggy Sue Got Married",
+        "director": "Francis Ford Coppola",
+        "composer": "John Barry",
+        "cast": [
+            "Kathleen Turner",
+            "Nicolas Cage",
+            "Barry Miller"
+        ],
+        "year": 1986
+    },
+    {
+        "title": "From Russia with Love",
+        "director": "Terence Young",
+        "composer": "John Barry",
+        "cast": [
+            "Sean Connery",
+            "Daniela Bianchi",
+            "Pedro Armendáriz"
+        ],
+        "year": 1963
+    },
+    {
+        "title": "Goldfinger",
+        "director": "Guy Hamilton",
+        "composer": "John Barry",
+        "cast": [
+            "Sean Connery",
+            "Gert Fröbe",
+            "Honor Blackman"
+        ],
+        "year": 1964
+    },
+    {
+        "title": "War of the Worlds",
+        "director": "Steven Spielberg",
+        "composer": "John Williams",
+        "cast": [
+            "Tom Cruise",
+            "Dakota Fanning",
+            "Justin Chatwin"
+        ],
+        "year": 2005
+    },
+    {
+        "title": "Indiana Jones and the Last Crusade",
+        "director": "Steven Spielberg",
+        "composer": "John Williams",
+        "cast": [
+            "Harrison Ford",
+            "Sean Connery",
+            "Denholm Elliott"
+        ],
+        "year": 1989
+    },
+    {
+        "title": "Raiders of the Lost Ark",
+        "director": "Steven Spielberg",
+        "composer": "John Williams",
+        "cast": [
+            "Harrison Ford",
+            "Karen Allen",
+            "Paul Freeman"
+        ],
+        "year": 1981
+    },
+    {
+        "title": "Minority Report",
+        "director": "Steven Spielberg",
+        "composer": "John Williams",
+        "cast": [
+            "Tom Cruise",
+            "Samantha Morton",
+            "Colin Farrell"
+        ],
+        "year": 2002
+    },
+    {
+        "title": "Star Wars",
+        "director": "George Lucas",
+        "composer": "John Williams",
+        "cast": [
+            "Mark Hamill",
+            "Harrison Ford",
+            "Carrie Fisher"
+        ],
+        "year": 1977
+    },
+    {
+        "title": "A Love in Germany",
+        "director": "Andrzej Wajda",
+        "composer": "Michel Legrand",
+        "cast": [
+            "Hanna Schygulla",
+            "Piotr Łysak",
+            "Armin Mueller-Stahl"
+        ],
+        "year": 1983
+    },
+    {
+        "title": "Vivre Sa Vie",
+        "director": "Jean-Luc Godard",
+        "composer": "Michel Legrand",
+        "cast": [
+            "Anna Karina",
+            "Sady Rebbot",
+            "André S. Labarthe"
+        ],
+        "year": 1962
+    },
+    {
+        "title": "Yentl",
+        "director": "Barbra Streisand",
+        "composer": "Michel Legrand",
+        "cast": [
+            "Barbra Streisand",
+            "Mandy Patinkin",
+            "Amy Irving"
+        ],
+        "year": 1983
+    },
+    {
+        "title": "Hearth Fires",
+        "director": "Serge Korber",
+        "composer": "Michel Legrand",
+        "cast": [
+            "Annie Girardot",
+            "Jean Rochefort",
+            "Claude Jade"
+        ],
+        "year": 1972
+    },
+    {
+        "title": "The Thomas Crown Affair",
+        "director": "Norman Jewison",
+        "composer": "Michel Legrand",
+        "cast": [
+            "Steve McQueen",
+            "Faye Dunaway",
+            "Paul Burke"
+        ],
+        "year": 1968
+    }
+]

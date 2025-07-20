@@ -1,0 +1,24 @@
+stages:
+  - run
+
+# Use the Docker image you build yourself (or the default Python one if preferred)
+# image: python:3.12-alpine  # Use this if you do NOT build a custom image
+image: registry.gitlab.com/your-namespace/your-project:latest  # Replace with your actual image path if building separately
+
+variables:
+  # You can define fallback values for your environment variables here if needed
+  PDM_IGNORE_SAVED_PYTHON: "1"
+
+run-main:
+  stage: run
+  script:
+    # Print Python version to verify the runtime
+    - python --version
+
+    # Run the main script with API key and custom arguments
+    - python src/hollywood_pub_sub/main.py --api_key "$TMDB_API_KEY" --max_movies_per_composer 10 --winning_threshold 5
+  rules:
+    # Run this job only on the main branch (optional)
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  environment:
+    name: production
