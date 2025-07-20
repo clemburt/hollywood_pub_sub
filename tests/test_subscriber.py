@@ -95,7 +95,7 @@ def test_announce_win_logs(monkeypatch):
     sub.announce_win()
 
     # Check that the winning announcement message was logged
-    assert any("🏆 Alex North has reached the winning threshold!" in msg for msg in logged_messages)
+    assert any("🏆 Subscriber composer Alex North has reached the winning threshold!" in msg for msg in logged_messages)
 
     # Check that the filmography entry is logged correctly
     assert any("1) Spartacus (1960) by Stanley Kubrick" in msg for msg in logged_messages)

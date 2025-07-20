@@ -48,8 +48,8 @@ class Subscriber:
             self.movies_count += 1
             self.movies_won.append(movie)
             logger.info(
-                f"✋ Subscriber composer {self.name} takes the assignment for movie "
-                f"{movie.title} ({movie.year}) by director {movie.director} - "
+                f"✋ Subscriber composer {self.name}:\n"
+                f"Hi {movie.director}! I will take the assignment for the movie {movie.title} ({movie.year})!\n"
                 f"Total: {self.movies_count}"
             )
             if self.has_won():
@@ -75,7 +75,7 @@ class Subscriber:
             for idx, movie in enumerate(self.movies_won, start=1)
         ]
         filmography_block = (
-            f"🏆 {self.name} has reached the winning threshold!\n"
+            f"🏆 Subscriber composer {self.name} has reached the winning threshold!\n"
             "🎞️  Filmography:\n" +
             "\n".join(filmography_lines)
         )
