@@ -1,20 +1,23 @@
-# Use Python 3.12 Alpine base image for a lightweight and up-to-date environment
+# Use Python 3.12 Alpine as the base image
 FROM python:3.12-alpine
 
-# Set working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Install build dependencies required for compiling packages
-RUN apk add --no-cache build-base
+# Install system build dependencies
+RUN apk add --no-cache build-base gcc libffi-dev musl-dev
 
-# Install PDM globally to manage Python dependencies and project installation
+# Install PDM globally
 RUN pip install pdm
 
-# Copy project files into the container
+# Copy all project files
 COPY . /app
 
-# Install project dependencies without creating or using a lock file
-RUN pdm install --no-lock
+# Install dependencies (no lock file required)
+RUN pdm install --prod
 
-# Default command can be overridden when running the container
-CMD ["hollywood_pub_sub", "--api_key", "${TMDB_API_KEY}", "--max_movies_per_composer", "10", "--winning_threshold", "5"]
+# Set environment variables (optional)
+ENV PYTHONPATH=/app
+
+# Default command can be overridden
+CMD ["pdm", "run", "hollywood_pub_sub", "--max_movies_per_composer", "10", "--winning_threshold", "5"]
