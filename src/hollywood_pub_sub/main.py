@@ -1,9 +1,8 @@
 import os
 import random
 import time
+import argparse
 from typing import Optional
-
-import typer
 
 from hollywood_pub_sub.logger import logger
 from hollywood_pub_sub.movie_database import MovieDatabase
@@ -11,16 +10,12 @@ from hollywood_pub_sub.publisher import Publisher
 from hollywood_pub_sub.subscriber import Subscriber
 from hollywood_pub_sub.settings import ComposerSettings
 
-app = typer.Typer()
-
 
 def run_game(
-    api_key: Optional[str] = typer.Option(
-        None, help="TMDb API key (or set TMDB_API_KEY env var)"
-    ),
-    max_movies_per_composer: int = typer.Option(10, help="Max movies per composer"),
-    winning_threshold: int = typer.Option(5, help="Winning threshold"),
-):
+    api_key: Optional[str],
+    max_movies_per_composer: int,
+    winning_threshold: int,
+) -> None:
     """
     Run the Publisher-Subscriber movie game.
     """
@@ -28,7 +23,7 @@ def run_game(
         api_key = os.getenv("TMDB_API_KEY")
         if api_key is None:
             logger.error("TMDB API key must be provided via argument or environment variable.")
-            raise typer.Exit(code=1)
+            exit(1)
 
     movie_db = MovieDatabase(api_key=api_key, max_movies_per_composer=max_movies_per_composer)
     random.shuffle(movie_db.movies)
@@ -54,19 +49,7 @@ def run_game(
         logger.info("👎 No winner reached the threshold.")
 
 
-@app.command()
-def run(
-    api_key: Optional[str] = typer.Option(
-        None, help="TMDb API key (or set TMDB_API_KEY env var)"
-    ),
-    max_movies_per_composer: int = typer.Option(10, help="Max movies per composer"),
-    winning_threshold: int = typer.Option(5, help="Winning threshold"),
-):
-    run_game(api_key, max_movies_per_composer, winning_threshold)
-
-
-@app.command()
-def db():
+def print_composers() -> None:
     """
     Print the list of composers from the movie database.
     """
@@ -74,6 +57,41 @@ def db():
     logger.info("List of composers:\n" + "\n".join(f"🎶 {composer}" for composer in composers))
 
 
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Hollywood Publisher-Subscriber CLI")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    # run subcommand
+    run_parser = subparsers.add_parser("run", help="Run the movie game")
+    run_parser.add_argument(
+        "--api_key",
+        type=str,
+        default=None,
+        help="TMDb API key (or set TMDB_API_KEY env var)",
+    )
+    run_parser.add_argument(
+        "--max_movies_per_composer",
+        type=int,
+        default=10,
+        help="Max movies per composer",
+    )
+    run_parser.add_argument(
+        "--winning_threshold",
+        type=int,
+        default=5,
+        help="Winning threshold",
+    )
+
+    # db subcommand
+    db_parser = subparsers.add_parser("db", help="Print list of composers")
+
+    args = parser.parse_args()
+
+    if args.command == "run":
+        run_game(args.api_key, args.max_movies_per_composer, args.winning_threshold)
+    elif args.command == "db":
+        print_composers()
+
 
 if __name__ == "__main__":
-    app()
+    main()
