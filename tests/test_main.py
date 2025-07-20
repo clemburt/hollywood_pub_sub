@@ -1,14 +1,14 @@
 import pytest
 from unittest.mock import patch
 
-from hollywood_pub_sub.main import main
+from hollywood_pub_sub.main import run_game
 from hollywood_pub_sub.movie import Movie
 from hollywood_pub_sub.movie_database import MovieDatabase
 
 
-def test_main_with_mocked_api(monkeypatch) -> None:
+def test_run_game_with_mocked_api(monkeypatch) -> None:
     """
-    Test the main function with mocked TMDb API calls.
+    Test the run_game function with mocked TMDb API calls.
 
     This test:
     - Mocks MovieDatabase._fetch_movies_from_api to avoid real HTTP requests.
@@ -67,7 +67,7 @@ def test_main_with_mocked_api(monkeypatch) -> None:
         with patch("hollywood_pub_sub.main.MovieDatabase", return_value=movie_db):
             # Patch logger to catch winner message
             with patch("hollywood_pub_sub.logger.logger.info") as mock_logger_info:
-                main(
+                run_game(
                     api_key="fake_api_key",
                     max_movies_per_composer=10,
                     winning_threshold=3,

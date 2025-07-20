@@ -3,20 +3,21 @@ name = "hollywood_pub_sub"
 version = "0.1.0"
 description = "A publisher-subscriber game between directors and composers"
 authors = [
-    {name = "Clement Burtscher", email = "clement.burtscher@navya.tech"},
+    {name = "Clement Burtscher", email = "clement.burtscher@laposte.net"},
 ]
 dependencies = [
     "pydantic>=2.11.7",
     "requests>=2.32.4",
-    "pydantic-settings>=2.10.1"
+    "pydantic-settings>=2.10.1",
+    "typer>=0.16.0"
 ]
 requires-python = ">=3.12"
 readme = "README.md"
 license = {text = "MIT"}
 
-# CLI entry point
+# CLI entry point using typer with subcommands
 [project.scripts]
-hollywood_pub_sub = "hollywood_pub_sub.main:main"
+hollywood_pub_sub = "hollywood_pub_sub.main:app"
 
 [build-system]
 requires = ["pdm-backend"]
@@ -65,4 +66,3 @@ test.composite = [
   "{pdm} sync -dG test",
   "pytest --cov=src --verbose --junit-xml=test.xml --cov-report=xml:coverage.xml --cov-report=term {args:tests} -o log_cli=true -o log_cli_level=DEBUG -vvv"
 ]
-
