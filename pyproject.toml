@@ -10,6 +10,9 @@ requires-python = ">=3.12"
 readme = "README.md"
 license = {text = "MIT"}
 
+[project.scripts]
+hollywood_pub_sub = "hollywood_pub_sub.main:main"
+
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"

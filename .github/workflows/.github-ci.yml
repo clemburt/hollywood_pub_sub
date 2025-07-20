@@ -63,4 +63,4 @@ jobs:
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
             ${{ env.IMAGE_NAME }} \
-            python src/hollywood_pub_sub/main.py --api_key "$TMDB_API_KEY" --max_movies_per_composer 10 --winning_threshold 5
+            hollywood_pub_sub --api_key "$TMDB_API_KEY" --max_movies_per_composer 10 --winning_threshold 5

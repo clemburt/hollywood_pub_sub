@@ -14,7 +14,7 @@ RUN pip install pdm
 COPY . /app
 
 # Install project dependencies without creating or using a lock file
-RUN pdm install --no-lock -e .
+RUN pdm install --no-lock
 
 # Default command can be overridden when running the container
-CMD ["python", "src/hollywood_pub_sub/main.py", "--api_key", "${TMDB_API_KEY}", "--max_movies_per_composer", "10", "--winning_threshold", "5"]
+CMD ["hollywood_pub_sub", "--api_key", "${TMDB_API_KEY}", "--max_movies_per_composer", "10", "--winning_threshold", "5"]
