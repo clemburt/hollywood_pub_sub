@@ -17,45 +17,45 @@ jobs:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3  # Checkout repo source code
+      - uses: actions/checkout@v3  # Checkout repository code
 
       - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v2  # Login action to authenticate Docker with GHCR
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t $IMAGE_NAME .  # Build Docker image with specified tag
+        run: docker build -t $IMAGE_NAME .  # Build the Docker image from the Dockerfile
 
       - name: Push Docker image
-        run: docker push $IMAGE_NAME  # Push Docker image to GitHub Container Registry
+        run: docker push $IMAGE_NAME  # Push the built image to GitHub Container Registry
 
   test:
     name: Run Tests in Docker Container
     runs-on: ubuntu-latest
-    needs: build  # Wait for build job to complete before testing
+    needs: build  # Run this job only after the image has been built
     steps:
-      - uses: actions/checkout@v3  # Checkout code to run tests if needed
+      - uses: actions/checkout@v3
 
-      - name: Run tests
+      - name: Run tests inside the Docker container
         env:
-          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}  # Pass API key secret to container
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
             ${{ env.IMAGE_NAME }} \
-            pdm run test  # Run tests inside Docker container using pdm
+            pdm run test
 
   run_main:
     name: Run Main Script
     runs-on: ubuntu-latest
-    needs: build  # Run only after image is built and pushed
-    # Condition to run:
-    # - on push to main branch
+    needs: build  # Run after the Docker image is built
+    # Run if:
+    # - this is a push to main branch
     # OR
-    # - on PR targeting main AND PR has label "CICD"
+    # - this is a pull request targeting main that has the "CICD" label
     if: |
       github.ref == 'refs/heads/main' ||
       (
@@ -64,11 +64,11 @@ jobs:
         contains(github.event.pull_request.labels.*.name, 'CICD')
       )
     steps:
-      - uses: actions/checkout@v3  # Checkout repo code for completeness
+      - uses: actions/checkout@v3
 
-      - name: Run main script
+      - name: Run main script using CLI entry point
         env:
-          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}  # Pass API key secret
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
