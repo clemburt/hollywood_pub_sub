@@ -1,34 +1,31 @@
-# Use python 3.12 slim-alpine base image for smaller size and security
+# Use Alpine-based Python 3.12 image for a small footprint
 FROM python:3.12-alpine
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Install dependencies for pdm and build tools
+# Install system dependencies required for pdm and builds
 RUN apk add --no-cache \
-    build-base \
+    gcc \
+    musl-dev \
     libffi-dev \
     openssl-dev \
     curl \
     bash
 
-# Install pdm (latest stable)
-RUN pip install --upgrade pip \
-    && pip install pdm
+# Upgrade pip and install pdm 2.x explicitly
+RUN pip install --upgrade pip
+RUN pip install 'pdm>=2.0.0'
 
-# Copy only necessary files for installing deps
+# Copy project files (including pyproject.toml and pdm.lock)
 COPY pyproject.toml pdm.lock /app/
+COPY src /app/src
 
-# Install project dependencies
+# Install dependencies without locking
 RUN pdm install --no-lock
 
-# Copy full source code
-COPY src /app/src
-COPY scripts /app/scripts
-COPY tests /app/tests
-
-# Install your package in editable mode
+# Install package in development mode
 RUN pdm develop
 
-# Default command (can be overridden in CI or docker run)
-CMD ["pdm", "run", "python", "-m", "hollywood_pub_sub.main"]
+# Default command (can be overridden by CI or docker run)
+CMD ["python", "src/hollywood_pub_sub/main.py"]
