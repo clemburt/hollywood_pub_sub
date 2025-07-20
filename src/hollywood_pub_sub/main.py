@@ -83,7 +83,7 @@ def main() -> None:
     )
 
     # db subcommand
-    db_parser = subparsers.add_parser("db", help="Print list of composers")
+    subparsers.add_parser("db", help="Print list of composers")
 
     args = parser.parse_args()
 

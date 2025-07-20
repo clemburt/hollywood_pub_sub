@@ -59,6 +59,10 @@ class Publisher:
         movie : Movie
             Movie instance to publish.
         """
-        logger.info(f"📣 Publisher director {movie.director} is looking for a composer for his film {movie.title} ({movie.year})")
+        logger.info(
+            f"📣 Publisher director {movie.director}:\n"
+            f"We are about to start shooting the movie {movie.title} ({movie.year})!\n"
+            "Who wants to score it?"
+        )
         for callback in self.subscribers:
             callback(movie)
