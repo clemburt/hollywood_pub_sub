@@ -9,6 +9,7 @@ from hollywood_pub_sub.logger import logger
 from hollywood_pub_sub.movie_database import MovieDatabase
 from hollywood_pub_sub.publisher import Publisher
 from hollywood_pub_sub.subscriber import Subscriber
+from hollywood_pub_sub.settings import ComposerSettings
 
 app = typer.Typer()
 
@@ -69,9 +70,8 @@ def db():
     """
     Print the list of composers from the movie database.
     """
-    api_key = os.getenv("TMDB_API_KEY", "")
-    movie_db = MovieDatabase(api_key=api_key)
-    logger.info("List of composers:\n" + "\n".join(f"🎶 {composer}" for composer in movie_db.COMPOSERS))
+    composers = ComposerSettings().composers
+    logger.info("List of composers:\n" + "\n".join(f"🎶 {composer}" for composer in composers))
 
 
 

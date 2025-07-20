@@ -27,13 +27,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build the Docker image with the specified tag
+      # Build the Docker image with the specified tag (pull latest base image)
       - name: Build Docker image
-        run: docker build -t $IMAGE_NAME .
+        run: docker build --pull -t ${{ env.IMAGE_NAME }} .
 
       # Push the built image to GHCR
       - name: Push Docker image
-        run: docker push $IMAGE_NAME
+        run: docker push ${{ env.IMAGE_NAME }}
 
   test:
     name: Run Tests in Docker Container
@@ -49,8 +49,8 @@ jobs:
         run: |
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
-            $IMAGE_NAME \
-            sh -c "pdm install && pytest --verbose"
+            ${{ env.IMAGE_NAME }} \
+            sh -c "pdm install -G dev && pytest --verbose --cov=hollywood_pub_sub"
 
   run_main:
     name: Run Main Script
@@ -74,5 +74,5 @@ jobs:
         run: |
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
-            $IMAGE_NAME \
+            ${{ env.IMAGE_NAME }} \
             hollywood_pub_sub run --api_key "$TMDB_API_KEY" --max_movies_per_composer 10 --winning_threshold 5
