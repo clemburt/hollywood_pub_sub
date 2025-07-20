@@ -60,6 +60,46 @@ docker run --rm \
   hollywood_pub_sub run --max_movies_per_composer 10 --winning_threshold 5
 ```
 
+Example:
+
+```bash
+[2025-07-20 21:19:59] [hollywood_pub_sub] INFO [publisher.py:62:publish] 📣 Publisher director Vittorio De Sica:
+We are about to start shooting the movie Sunflower (1970)!
+Who wants to score it?
+[2025-07-20 21:19:59] [hollywood_pub_sub] INFO [subscriber.py:50:on_movie_published] ✋ Subscriber composer Henry Mancini:
+Hi Vittorio De Sica! I will take the assignment for the movie Sunflower (1970)!
+Total: 3
+[2025-07-20 21:19:59] [hollywood_pub_sub] INFO [publisher.py:62:publish] 📣 Publisher director Peter Jackson:
+We are about to start shooting the movie The Lord of the Rings: The Return of the King (2003)!
+Who wants to score it?
+[2025-07-20 21:19:59] [hollywood_pub_sub] INFO [subscriber.py:50:on_movie_published] ✋ Subscriber composer Howard Shore:
+Hi Peter Jackson! I will take the assignment for the movie The Lord of the Rings: The Return of the King (2003)!
+Total: 1
+[2025-07-20 21:20:23] [hollywood_pub_sub] INFO [publisher.py:62:publish] 📣 Publisher director Clint Eastwood:
+We are about to start shooting the movie The Bridges of Madison County (1995)!
+Who wants to score it?
+[2025-07-20 21:20:23] [hollywood_pub_sub] INFO [subscriber.py:50:on_movie_published] ✋ Subscriber composer Lennie Niehaus:
+Hi Clint Eastwood! I will take the assignment for the movie The Bridges of Madison County (1995)!
+Total: 4
+
+[...]
+
+[2025-07-20 21:20:24] [hollywood_pub_sub] INFO [publisher.py:62:publish] 📣 Publisher director Walter Hill:
+We are about to start shooting the movie 48 Hrs. (1982)!
+Who wants to score it?
+[2025-07-20 21:20:24] [hollywood_pub_sub] INFO [subscriber.py:50:on_movie_published] ✋ Subscriber composer James Horner:
+Hi Walter Hill! I will take the assignment for the movie 48 Hrs. (1982)!
+Total: 5
+[2025-07-20 21:20:24] [hollywood_pub_sub] INFO [subscriber.py:82:announce_win] 🏆 Subscriber composer James Horner has reached the winning threshold!
+🎞️  Filmography:
+1) Star Trek III: The Search for Spock (1984) by Leonard Nimoy
+2) The Name of the Rose (1986) by Jean-Jacques Annaud
+3) Titanic (1997) by James Cameron
+4) Apollo 13 (1995) by Ron Howard
+5) 48 Hrs. (1982) by Walter Hill
+[2025-07-20 21:20:24] [hollywood_pub_sub] INFO [main.py:46:run_game] 🏆 Winner is subscriber composer James Horner with 5 movies!
+```
+
 ## db command
 Displays the list of composers used in the simulation (those the game fetches movies for).
 
@@ -72,6 +112,29 @@ Or via Docker:
 docker run --rm \
   ghcr.io/clemburt/hollywood_pub_sub:latest \
   hollywood_pub_sub db
+```
+
+Example:
+
+```bash
+[2025-07-21 00:11:19] [hollywood_pub_sub] INFO [main.py:86:print_composers] List of composers:
+🎶 Alex North
+🎶 Alexandre Desplat
+🎶 Angela Morley
+🎶 Arthur B. Rubinstein
+🎶 Basil Poledouris
+🎶 Bernard Herrmann
+🎶 Bill Conti
+🎶 Christopher Young
+🎶 Dave Grusin
+
+[...]
+
+🎶 Ryuichi Sakamoto
+🎶 Stephen Sondheim
+🎶 Trevor Jones
+🎶 Vladimir Cosma
+🎶 Wojciech Kilar
 ```
 
 # Tests
