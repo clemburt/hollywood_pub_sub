@@ -1,31 +1,20 @@
-# Use Alpine-based Python 3.12 image for a small footprint
+# Use Python 3.12 Alpine base image
 FROM python:3.12-alpine
 
-# Set working directory inside container
+# Set working directory inside the container
 WORKDIR /app
 
-# Install system dependencies required for pdm and builds
-RUN apk add --no-cache \
-    gcc \
-    musl-dev \
-    libffi-dev \
-    openssl-dev \
-    curl \
-    bash
+# Install build dependencies
+RUN apk add --no-cache build-base
 
-# Upgrade pip and install pdm 2.x explicitly
-RUN pip install --upgrade pip
-RUN pip install 'pdm>=2.0.0'
+# Install pdm globally
+RUN pip install pdm
 
-# Copy project files (including pyproject.toml and pdm.lock)
-COPY pyproject.toml pdm.lock /app/
-COPY src /app/src
+# Copy all project files including README.md, pyproject.toml, lock file, source code, etc.
+COPY . /app
 
-# Install dependencies without locking
+# Install project dependencies without locking (use pdm.lock for reproducible installs if preferred)
 RUN pdm install --no-lock
 
-# Install package in development mode
-RUN pdm develop
-
-# Default command (can be overridden by CI or docker run)
-CMD ["python", "src/hollywood_pub_sub/main.py"]
+# Default command (can be overridden)
+CMD ["python", "src/hollywood_pub_sub/main.py", "--api_key", "${TMDB_API_KEY}", "--max_movies_per_composer", "10", "--winning_threshold", "5"]
