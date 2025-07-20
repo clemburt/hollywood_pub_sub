@@ -1,24 +1,34 @@
-# Use official Python 3.12 based on Alpine (lightweight)
+# Use python 3.12 slim-alpine base image for smaller size and security
 FROM python:3.12-alpine
 
-# Set working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Install required system dependencies for building packages (e.g. wheels)
-RUN apk add --no-cache gcc musl-dev libffi-dev
+# Install dependencies for pdm and build tools
+RUN apk add --no-cache \
+    build-base \
+    libffi-dev \
+    openssl-dev \
+    curl \
+    bash
 
-# Copy the project files into the container
-COPY pyproject.toml pdm.lock ./
-COPY src/ ./src/
+# Install pdm (latest stable)
+RUN pip install --upgrade pip \
+    && pip install pdm
 
-# Install PDM (Python Dependency Manager)
-RUN pip install --no-cache-dir pdm
+# Copy only necessary files for installing deps
+COPY pyproject.toml pdm.lock /app/
 
-# Install Python dependencies in isolated environment (no virtualenv)
-RUN pdm install --no-editable --prod
+# Install project dependencies
+RUN pdm install --no-lock
 
-# Set environment variable for unbuffered logging (useful for CI output)
-ENV PYTHONUNBUFFERED=1
+# Copy full source code
+COPY src /app/src
+COPY scripts /app/scripts
+COPY tests /app/tests
 
-# Optionally define the default command to run the app (can be overridden)
-CMD ["python", "src/hollywood_pub_sub/main.py"]
+# Install your package in editable mode
+RUN pdm develop
+
+# Default command (can be overridden in CI or docker run)
+CMD ["pdm", "run", "python", "-m", "hollywood_pub_sub.main"]
