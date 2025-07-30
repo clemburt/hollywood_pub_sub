@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to the hollywood_pub_sub project will be documented in this file
 
+## [0.1.1] - 2025-07-31
+### Added
+- Auto generate sphinx documentation with pdm command
+- Add CI job for building sphinx documentation
+
 ## [0.1.0] - 2025-07-30
 ### Added
 - Add pre-commit hooks
