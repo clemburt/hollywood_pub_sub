@@ -53,7 +53,7 @@ jobs:
             pdm test
 
   run_main:
-    name: Run Main Script
+    name: 🔁 Run Main (Group)
     runs-on: ubuntu-latest
     needs: build
     if: |
@@ -64,10 +64,16 @@ jobs:
         contains(github.event.pull_request.labels.*.name, 'CICD')
       )
     steps:
-      - uses: actions/checkout@v3
+      - name: Group placeholder
+        run: echo "Run Main group triggered - delegating to children..."
 
-      # Execute the main CLI command explicitly
-      - name: Run main CLI command
+  run_main_api:
+    name: 🚀 Run Main CLI - API
+    runs-on: ubuntu-latest
+    needs: run_main
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run CLI - API
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
@@ -77,4 +83,21 @@ jobs:
             hollywood_pub_sub run \
               --api_key "$TMDB_API_KEY" \
               --max_movies_per_composer 10 \
-              --winning_threshold 5
+              --winning_threshold 3
+
+  run_main_json:
+    name: 🚀 Run Main CLI - JSON
+    runs-on: ubuntu-latest
+    needs: run_main
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run CLI - JSON
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          docker run --rm \
+            ${{ env.IMAGE_NAME }} \
+            hollywood_pub_sub run \
+              --json_path src/hollywood_pub_sub/movie_database.json \
+              --max_movies_per_composer 10 \
+              --winning_threshold 3

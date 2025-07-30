@@ -14,7 +14,6 @@ run-main:
   script:
     # Print Python version to verify the runtime
     - python --version
-
     # Run the main script with API key and custom arguments
     - python src/hollywood_pub_sub/main.py --api_key "$TMDB_API_KEY" --max_movies_per_composer 10 --winning_threshold 5
   rules:
