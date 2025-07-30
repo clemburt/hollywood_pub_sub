@@ -1,7 +1,8 @@
-from typing import List, Dict, Optional, Set, Union
 import time
-import requests
+from typing import List, Dict, Optional, Set, Union
+
 from pydantic import Field, PositiveInt
+import requests
 
 from hollywood_pub_sub.movie import Movie
 from hollywood_pub_sub.logger import logger

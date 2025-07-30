@@ -1,12 +1,11 @@
-import json
 from abc import ABC, abstractmethod
+import json
 from pathlib import Path
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, validate_call
+from pydantic import BaseModel, ConfigDict, validate_call
 
 from hollywood_pub_sub.movie import Movie
-# from hollywood_pub_sub.settings import ComposerSettings  # Plus nécessaire
 
 
 class MovieDatabase(BaseModel, ABC):

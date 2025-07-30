@@ -1,9 +1,9 @@
+import argparse
 import os
+from pathlib import Path
 import random
 import time
-import argparse
-from typing import Optional, Union
-from pathlib import Path
+from typing import Optional
 
 from pydantic import FilePath
 

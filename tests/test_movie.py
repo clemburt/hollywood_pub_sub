@@ -1,5 +1,5 @@
-import pytest
 from pydantic import ValidationError
+import pytest
 
 from hollywood_pub_sub.movie import Movie
 

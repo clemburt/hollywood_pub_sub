@@ -32,6 +32,11 @@ test = [
     "pytest>=8.4.1",
     "pytest-cov>=6.2.1"
 ]
+doc = [
+    "sphinx>=8.2.3",
+    "sphinx-autodoc-typehints>=3.2.0",
+    "sphinx-rtd-theme>=3.0.2",
+]
 
 [tool.pytest.ini_options]
 log_cli = true
@@ -67,3 +72,9 @@ test.composite = [
   "pytest --cov=src --verbose --junit-xml=test.xml --cov-report=xml:coverage.xml --cov-report=term {args:tests} -o log_cli=true -o log_cli_level=DEBUG -vvv"
 ]
 validate-json = "python scripts/validate_movie_database_json.py"
+# This generates .rst files from your Python modules using Sphinx autodoc
+generate-docs = "sphinx-apidoc -o docs/source src"
+# This builds HTML documentation from the source files
+build-docs = "sphinx-build -b html docs/source docs/build"
+# Composite command that runs both generation and build
+doc = { composite = ["generate-docs", "build-docs"] }

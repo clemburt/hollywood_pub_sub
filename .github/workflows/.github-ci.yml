@@ -101,3 +101,40 @@ jobs:
               --json_path src/hollywood_pub_sub/movie_database.json \
               --max_movies_per_composer 10 \
               --winning_threshold 3
+
+  build-doc:
+    name: 📚 Build and Deploy Docs
+    runs-on: ubuntu-latest
+    needs: build
+    if: |
+      github.ref == 'refs/heads/main' ||
+      (
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.base.ref == 'main' &&
+        contains(github.event.pull_request.labels.*.name, 'documentation')
+      )
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install PDM
+        run: |
+          curl -sSL https://pdm-project.org/install-pdm.py | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install doc dependencies
+        run: pdm install -G doc
+
+      - name: Build documentation
+        run: pdm doc
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/build
+          publish_branch: gh-pages
