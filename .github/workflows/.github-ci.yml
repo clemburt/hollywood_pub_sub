@@ -14,7 +14,7 @@ env:
 
 jobs:
   build:
-    name: Build and Push Docker Image
+    name: 🐋 Build and Push Docker Image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
         run: docker push ${{ env.IMAGE_NAME }}
 
   test:
-    name: Run Tests in Docker Container
+    name: 🧪 Run Tests in Docker Container
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -53,7 +53,7 @@ jobs:
             pdm test
 
   run_main:
-    name: 🔁 Run Main (Group)
+    name: 🖥️ Run Main (Group)
     runs-on: ubuntu-latest
     needs: build
     if: |
@@ -68,7 +68,7 @@ jobs:
         run: echo "Run Main group triggered - delegating to children..."
 
   run_main_api:
-    name: 🚀 Run Main CLI - API
+    name: 🖥️🛜 Run Main CLI - API
     runs-on: ubuntu-latest
     needs: run_main
     steps:
@@ -86,7 +86,7 @@ jobs:
               --winning_threshold 3
 
   run_main_json:
-    name: 🚀 Run Main CLI - JSON
+    name: 🖥️🗒️ Run Main CLI - JSON
     runs-on: ubuntu-latest
     needs: run_main
     steps:
@@ -101,3 +101,40 @@ jobs:
               --json_path src/hollywood_pub_sub/movie_database.json \
               --max_movies_per_composer 10 \
               --winning_threshold 3
+
+  doc:
+    name: 📚 Build and Deploy Docs
+    runs-on: ubuntu-latest
+    needs: build
+    if: |
+      github.ref == 'refs/heads/main' ||
+      (
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.base.ref == 'main' &&
+        contains(github.event.pull_request.labels.*.name, 'documentation')
+      )
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install PDM
+        run: |
+          curl -sSL https://pdm-project.org/install-pdm.py | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install doc dependencies
+        run: pdm install -G doc
+
+      - name: Build documentation
+        run: pdm doc
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/build
+          publish_branch: gh-pages

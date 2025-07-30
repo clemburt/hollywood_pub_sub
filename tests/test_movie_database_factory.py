@@ -1,11 +1,10 @@
-import pytest
 from pathlib import Path
+
+import pytest
 from unittest.mock import patch
 
-from hollywood_pub_sub.movie_database import MovieDatabase
 from hollywood_pub_sub.movie_database_from_json import MovieDatabaseFromJSON
-from hollywood_pub_sub.movie_database_from_api import MovieDatabaseFromAPI
-from hollywood_pub_sub.movie_database_factory import movie_database_factory  # assuming this is the module
+from hollywood_pub_sub.movie_database_factory import movie_database_factory
 
 
 @pytest.fixture

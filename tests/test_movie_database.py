@@ -1,7 +1,9 @@
 import json
 from pathlib import Path
 import tempfile
+
 import pytest
+
 from hollywood_pub_sub.movie import Movie
 from hollywood_pub_sub.movie_database import MovieDatabase
 

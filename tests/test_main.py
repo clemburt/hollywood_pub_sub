@@ -1,11 +1,9 @@
-import sys
-import builtins
-import types
 from pathlib import Path
-from unittest.mock import MagicMock
+import sys
+import types
 
 import pytest
-from pydantic import FilePath
+from unittest.mock import MagicMock
 
 import hollywood_pub_sub.main as main
 
@@ -128,16 +126,16 @@ def test_main_invalid_json_path(monkeypatch):
 ])
 def test_validated_path_handling(monkeypatch, json_path_arg, expected_valid):
     monkeypatch.setattr(sys, "argv", ["prog", "run"] + (["--json_path", json_path_arg] if json_path_arg else []))
-    
+
     # Prepare a mock for logger.error
     mock_logger_error = MagicMock()
     monkeypatch.setattr(main.logger, "error", mock_logger_error)
-    
+
     def fake_run_game(*args, **kwargs):
         if not expected_valid:
             main.logger.error("Error simulated in fake_run_game")
             raise SystemExit(1)
-    
+
     monkeypatch.setattr(main, "run_game", fake_run_game)
     monkeypatch.setattr(Path, "exists", lambda self: True)
     monkeypatch.setattr(Path, "is_file", lambda self: True)

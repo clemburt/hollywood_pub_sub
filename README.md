@@ -7,6 +7,7 @@
   - [run command](#run-command)
   - [db command](#db-command)
 - [Tests](#tests)
+- [Documentation](#documentation)
 - [Docker Notes](#docker-notes)
 - [License](#license)
 - [Authors](#authors)
@@ -146,6 +147,14 @@ pdm test
 This will:
 - Sync test dependencies
 - Run all tests with coverage reporting
+
+# Documentation
+Build the sphinx documentation using
+```bash
+pdm doc
+```
+
+📚 [Documentation](https://clemburt.github.io/hollywood_pub_sub/)
 
 # Docker Notes
 The image installs only production dependencies (--prod), so tests must be run explicitly with dev install:

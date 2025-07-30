@@ -3,6 +3,7 @@ from typing import Callable, List
 from hollywood_pub_sub.logger import logger
 from hollywood_pub_sub.movie import Movie
 
+
 class Publisher:
     """
     Publisher class that publishes movies to subscribers.

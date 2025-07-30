@@ -1,6 +1,7 @@
 import os
+from pathlib import Path
 
-from hollywood_pub_sub.movie_database_factory import MovieDatabaseFactory
+from hollywood_pub_sub.movie_database_from_api import MovieDatabaseFromAPI
 
 
 def main() -> None:
@@ -11,11 +12,11 @@ def main() -> None:
     -------
     None
     """
-    # Step 1: Build movie database with movies from TMDb API
+    # Build movie database with movies from TMDb API
     api_key = os.getenv("TMDB_API_KEY")
-    movie_db = MovieDatabaseFactory(
+    movie_db = MovieDatabaseFromAPI(
         api_key=api_key,
-        COMPOSERS=[
+        composers=[
             "Bernard Herrmann",
             "Jerry Goldsmith",
             "John Barry",
@@ -24,7 +25,7 @@ def main() -> None:
         ],
         max_movies_per_composer=5,
     )
-    movie_db.export_to_json(path="movie_database.json")
+    movie_db.to_json(path=Path("movie_database.json"))
 
 
 if __name__ == "__main__":

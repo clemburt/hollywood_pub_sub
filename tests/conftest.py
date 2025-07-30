@@ -1,5 +1,7 @@
 import logging
+
 import pytest
+
 
 @pytest.fixture(autouse=True, scope="session")
 def disable_urllib3_debug_logging():

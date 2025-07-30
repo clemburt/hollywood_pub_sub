@@ -1,5 +1,6 @@
-import pytest
 from pathlib import Path
+
+import pytest
 
 from hollywood_pub_sub.movie_database_from_json import MovieDatabaseFromJSON
 
