@@ -26,6 +26,7 @@ build-backend = "pdm.backend"
 dev = [
     "pytest>=8.4.1",
     "pytest-cov>=6.2.1",
+    "pre-commit>=4.2.0",
 ]
 test = [
     "pytest>=8.4.1",
@@ -65,3 +66,4 @@ test.composite = [
   "{pdm} sync -dG test",
   "pytest --cov=src --verbose --junit-xml=test.xml --cov-report=xml:coverage.xml --cov-report=term {args:tests} -o log_cli=true -o log_cli_level=DEBUG -vvv"
 ]
+validate-json = "python scripts/validate_movie_database_json.py"
