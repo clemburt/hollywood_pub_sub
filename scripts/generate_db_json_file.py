@@ -1,6 +1,6 @@
 import os
 
-from hollywood_pub_sub.movie_database import MovieDatabase
+from hollywood_pub_sub.movie_database_factory import MovieDatabaseFactory
 
 
 def main() -> None:
@@ -13,7 +13,7 @@ def main() -> None:
     """
     # Step 1: Build movie database with movies from TMDb API
     api_key = os.getenv("TMDB_API_KEY")
-    movie_db = MovieDatabase(
+    movie_db = MovieDatabaseFactory(
         api_key=api_key,
         COMPOSERS=[
             "Bernard Herrmann",

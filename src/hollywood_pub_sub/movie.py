@@ -1,28 +1,32 @@
-from typing import List, Optional
+from typing import List
+from pydantic_settings import BaseSettings
+from pydantic import ConfigDict
 
-from pydantic import BaseModel
 
-
-class Movie(BaseModel):
+class Movie(BaseSettings):
     """
-    Movie data model.
+    Movie model representing a single film entry.
 
     Attributes
     ----------
     title : str
-        Title of the movie.
+        The title of the movie.
     director : str
-        Director of the movie.
+        The director of the movie.
     composer : str
-        Composer who created the original score.
+        The composer of the soundtrack.
     cast : List[str]
-        Main actors in the movie (up to 3).
-    year : Optional[int]
-        Year the movie was released.
+        List of main cast members.
+    year : int
+        The release year of the movie.
     """
+
     title: str
     director: str
     composer: str
     cast: List[str]
-    year: Optional[int]
+    year: int
 
+    model_config = ConfigDict(
+        extra="forbid"  # Disallow unexpected fields
+    )

@@ -19,7 +19,7 @@ class Subscriber:
         List of movies assigned to the composer.
     """
 
-    def __init__(self, name: str, winning_threshold: int = 3):
+    def __init__(self, name: str, winning_threshold: int):
         """
         Initialize a Subscriber.
 
@@ -28,7 +28,7 @@ class Subscriber:
         name : str
             Subscriber (composer) name.
         winning_threshold : int, optional
-            Number of movies to reach to win (default is 3).
+            Number of movies to reach to win.
         """
         self.name = name
         self.movies_count = 0
