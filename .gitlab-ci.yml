@@ -1,23 +1,87 @@
 stages:
-  - run
-
-# Use the Docker image you build yourself (or the default Python one if preferred)
-# image: python:3.12-alpine  # Use this if you do NOT build a custom image
-image: registry.gitlab.com/your-namespace/your-project:latest  # Replace with your actual image path if building separately
+  - build
+  - test
+  - run_main
 
 variables:
-  # You can define fallback values for your environment variables here if needed
-  PDM_IGNORE_SAVED_PYTHON: "1"
+  IMAGE_NAME: $CI_REGISTRY_IMAGE/hollywood_pub_sub:latest
 
-run-main:
-  stage: run
+.default_docker:
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+build:
+  stage: build
+  extends: .default_docker
   script:
-    # Print Python version to verify the runtime
-    - python --version
-    # Run the main script with API key and custom arguments
-    - python src/hollywood_pub_sub/main.py --api_key "$TMDB_API_KEY" --max_movies_per_composer 10 --winning_threshold 5
+    - docker build --pull -t "$IMAGE_NAME" .
+    - docker push "$IMAGE_NAME"
+  tags:
+    - docker
+
+test:
+  stage: test
+  extends: .default_docker
+  needs: ["build"]
+  script:
+    - docker pull "$IMAGE_NAME"
+    - docker run --rm \
+        -e TMDB_API_KEY="$TMDB_API_KEY" \
+        "$IMAGE_NAME" \
+        pdm test
+  tags:
+    - docker
+
+run_main:
+  stage: run_main
+  extends: .default_docker
+  script:
+    - echo "Parent job for run_main – triggers downstream"
+  needs: ["build"]
+  when: manual
+  allow_failure: true
   rules:
-    # Run this job only on the main branch (optional)
     - if: '$CI_COMMIT_BRANCH == "main"'
-  environment:
-    name: production
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" && $CI_MERGE_REQUEST_LABELS =~ /CICD/'
+  tags:
+    - docker
+
+run_main_api:
+  stage: run_main
+  extends: .default_docker
+  needs: ["run_main"]
+  script:
+    - docker pull "$IMAGE_NAME"
+    - docker run --rm \
+        -e TMDB_API_KEY="$TMDB_API_KEY" \
+        "$IMAGE_NAME" \
+        hollywood_pub_sub run \
+          --api_key "$TMDB_API_KEY" \
+          --max_movies_per_composer 10 \
+          --winning_threshold 3
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" && $CI_MERGE_REQUEST_LABELS =~ /CICD/'
+  tags:
+    - docker
+
+run_main_json:
+  stage: run_main
+  extends: .default_docker
+  needs: ["run_main"]
+  script:
+    - docker pull "$IMAGE_NAME"
+    - docker run --rm \
+        "$IMAGE_NAME" \
+        hollywood_pub_sub run \
+          --json_path src/hollywood_pub_sub/movie_database.json \
+          --max_movies_per_composer 10 \
+          --winning_threshold 3
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" && $CI_MERGE_REQUEST_LABELS =~ /CICD/'
+  tags:
+    - docker

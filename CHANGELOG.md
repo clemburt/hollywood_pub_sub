@@ -5,8 +5,10 @@ All notable changes to the hollywood_pub_sub project will be documented in this 
 ### Added
 - Add pre-commit hooks
 - Add file *CHANGELOG.md*
+- Add CI job for running main with JSON file
 ### Changed
 - Add inheritance between movie database classes
 - Use pydantic RootModel for loading JSON file
 - When loading movie database JSON file, retrieve composers list from content
 - Rework unit tests
+- Split CI run-main parent job into 2 children jobs (run with TMDb API key and JSON file)
