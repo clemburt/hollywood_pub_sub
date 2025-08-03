@@ -4,6 +4,8 @@ All notable changes to the hollywood_pub_sub project will be documented in this 
 ## [0.1.2] - 2025-08-03
 ### Added
 - Include *CHANGELOG.md* and *README.md* in sphinx documentation
+### Changed
+- Rename CI jobs
 
 ## [0.1.1] - 2025-07-31
 ### Added
