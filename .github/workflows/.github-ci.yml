@@ -36,30 +36,6 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ env.IMAGE_NAME }}
 
-  test:
-    name: 🧪 Run tests
-    runs-on: ubuntu-latest
-    # This job depends on the build job
-    needs: build
-    steps:
-      # Checkout the repository
-      - uses: actions/checkout@v3
-
-      - name: Install test group dependencies with PDM
-        run: |
-          docker run --rm \
-            ${{ env.IMAGE_NAME }} \
-            pdm install -dG dev
-
-      - name: Run tests with PDM
-        env:
-          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-        run: |
-          docker run --rm \
-            -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
-            ${{ env.IMAGE_NAME }} \
-            pdm test
-
   run_main:
     name: 🖥️ Run Main (Group)
     runs-on: ubuntu-latest
@@ -117,6 +93,24 @@ jobs:
               --max_movies_per_composer 10 \
               --winning_threshold 3
 
+  test:
+    name: 🧪 Run tests
+    runs-on: ubuntu-latest
+    # This job depends on the build job
+    needs: build
+    steps:
+      # Checkout the repository
+      - uses: actions/checkout@v3
+
+      - name: Run tests with PDM
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          docker run --rm \
+            -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
+            ${{ env.IMAGE_NAME }} \
+            sh -c "pdm install -dG test && pdm test"
+
   doc:
     name: 📚 Build and deploy Docs
     runs-on: ubuntu-latest
@@ -133,12 +127,6 @@ jobs:
       # Checkout the repository
       - uses: actions/checkout@v3
 
-      - name: Install doc group dependencies with PDM
-        run: |
-          docker run --rm \
-            ${{ env.IMAGE_NAME }} \
-            pdm install -dG doc
-
       - name: Build documentation with PDM
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
@@ -146,7 +134,7 @@ jobs:
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
             ${{ env.IMAGE_NAME }} \
-            pdm doc
+            sh -c "pdm install -dG doc && pdm doc"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -164,12 +152,6 @@ jobs:
       # Checkout the repository
       - uses: actions/checkout@v3
 
-      - name: Install lint group dependencies with PDM
-        run: |
-          docker run --rm \
-            ${{ env.IMAGE_NAME }} \
-            pdm install -dG lint
-
       - name: Run linting with PDM
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
@@ -177,4 +159,4 @@ jobs:
           docker run --rm \
             -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
             ${{ env.IMAGE_NAME }} \
-            pdm lint
+            sh -c "pdm install -dG lint && pdm lint"
