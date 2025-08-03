@@ -1,5 +1,3 @@
-# hollywood_pub_sub
-
 # Table of Contents
 - [Purpose](#purpose)
 - [Installation](#installation)
@@ -8,7 +6,6 @@
   - [db command](#db-command)
 - [Tests](#tests)
 - [Documentation](#documentation)
-- [Docker Notes](#docker-notes)
 - [License](#license)
 - [Authors](#authors)
 
@@ -141,7 +138,16 @@ Example:
 # Tests
 Run the test suite using:
 ```bash
+pdm install -dG test
 pdm test
+```
+
+The Docker image installs only production dependencies (--prod), so tests must be run explicitly with test group install:
+
+```bash
+docker run --rm \
+  ghcr.io/clemburt/hollywood_pub_sub:latest \
+  sh -c "pdm install -dG test && pdm test"
 ```
 
 This will:
@@ -151,20 +157,19 @@ This will:
 # Documentation
 Build the sphinx documentation using
 ```bash
+pdm install -dG doc
 pdm doc
 ```
 
-📚 [Documentation](https://clemburt.github.io/hollywood_pub_sub/)
-
-# Docker Notes
-The image installs only production dependencies (--prod), so tests must be run explicitly with dev install:
+The Docker image installs only production dependencies (--prod), so doc must be run explicitly with doc group install:
 
 ```bash
 docker run --rm \
-  -e TMDB_API_KEY=your_key \
   ghcr.io/clemburt/hollywood_pub_sub:latest \
-  sh -c "pdm install -G test && pdm test"
+  sh -c "pdm install -dG doc && pdm doc"
 ```
+
+📚 [Documentation](https://clemburt.github.io/hollywood_pub_sub/)
 
 # License
 MIT License

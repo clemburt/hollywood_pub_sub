@@ -13,14 +13,15 @@ sys.path.insert(0, os.path.abspath('../../src'))
 project = 'hollywood_pub_sub'
 copyright = '2025, Clement Burtscher'
 author = 'Clement Burtscher'
-release = '0.1.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 extensions = [
-    'sphinx.ext.autodoc',            # Enables automatic doc generation from docstrings
-    'sphinx.ext.napoleon',           # Supports NumPy and Google style docstrings
-    'sphinx_autodoc_typehints',      # Shows type hints in function/method signatures
+    'myst_parser',                  # Allows the use of Markdown in Sphinx documentation
+    'sphinx.ext.autodoc',           # Enables automatic documentation generation from docstrings
+    'sphinx.ext.napoleon',          # Supports NumPy and Google style docstrings
+    'sphinx_autodoc_typehints',     # Shows type hints in function/method signatures in the documentation
+    'sphinx_copybutton',            # Adds "Copy" buttons to code blocks
 ]
 
 # Include both class and __init__ docstrings
@@ -62,3 +63,7 @@ autodoc_pydantic_field_show_constraints = False
 autodoc_pydantic_model_signature_prefix = "class"
 autodoc_pydantic_field_show_required = True
 autodoc_pydantic_model_member_order = "bysource"
+
+# Configure sphinx-copybutton
+copybutton_selector = "div.highlight pre"  # Selector for the code blocks (where the copy button will appear)
+copybutton_text = "copy"  # Text that will be displayed on the "Copy" button
