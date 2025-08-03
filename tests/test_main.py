@@ -1,9 +1,9 @@
-from pathlib import Path
 import sys
 import types
+from pathlib import Path
+from unittest.mock import MagicMock
 
 import pytest
-from unittest.mock import MagicMock
 
 import hollywood_pub_sub.main as main
 
@@ -13,9 +13,27 @@ def fake_movies():
     # Simple mock movie objects
     Movie = types.SimpleNamespace
     return [
-        Movie(title="Movie1", composer="Composer1", director="Dir1", cast=["Actor1"], year=2000),
-        Movie(title="Movie2", composer="Composer2", director="Dir2", cast=["Actor2"], year=2001),
-        Movie(title="Movie3", composer="Composer1", director="Dir1", cast=["Actor3"], year=2002),
+        Movie(
+            title="Movie1",
+            composer="Composer1",
+            director="Dir1",
+            cast=["Actor1"],
+            year=2000,
+        ),
+        Movie(
+            title="Movie2",
+            composer="Composer2",
+            director="Dir2",
+            cast=["Actor2"],
+            year=2001,
+        ),
+        Movie(
+            title="Movie3",
+            composer="Composer1",
+            director="Dir1",
+            cast=["Actor3"],
+            year=2002,
+        ),
     ]
 
 
@@ -29,7 +47,9 @@ def fake_movie_db(fake_movies):
 
 def test_run_game_exits_without_api_key_or_json(monkeypatch):
     monkeypatch.setattr(main.logger, "error", MagicMock())
-    monkeypatch.setattr(sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code)))
+    monkeypatch.setattr(
+        sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code))
+    )
 
     with pytest.raises(SystemExit):
         main.run_game(json_path=None, api_key=None)
@@ -52,7 +72,9 @@ def test_run_game_runs_with_json(monkeypatch, fake_movie_db):
     fake_subscriber.has_won.return_value = False
     fake_subscriber.movies_count = 0
     # We will have one subscriber per composer
-    monkeypatch.setattr(main, "Subscriber", lambda name, winning_threshold: fake_subscriber)
+    monkeypatch.setattr(
+        main, "Subscriber", lambda name, winning_threshold: fake_subscriber
+    )
 
     # Patch logger to suppress output
     monkeypatch.setattr(main.logger, "info", MagicMock())
@@ -60,7 +82,12 @@ def test_run_game_runs_with_json(monkeypatch, fake_movie_db):
     # Patch time.sleep to skip delay
     monkeypatch.setattr(main.time, "sleep", lambda x: None)
 
-    main.run_game(json_path=Path("fake.json"), api_key=None, max_movies_per_composer=2, winning_threshold=1)
+    main.run_game(
+        json_path=Path("fake.json"),
+        api_key=None,
+        max_movies_per_composer=2,
+        winning_threshold=1,
+    )
 
     # Assert publisher published all movies
     assert fake_publisher.publish.call_count == len(fake_movie_db.movies)
@@ -71,7 +98,9 @@ def test_run_game_runs_with_json(monkeypatch, fake_movie_db):
 
 def test_print_composers(monkeypatch):
     # Patch ComposerSettings to return known composers
-    monkeypatch.setattr(main, "ComposerSettings", lambda: types.SimpleNamespace(composers=["C1", "C2"]))
+    monkeypatch.setattr(
+        main, "ComposerSettings", lambda: types.SimpleNamespace(composers=["C1", "C2"])
+    )
     monkeypatch.setattr(main.logger, "info", MagicMock())
 
     main.print_composers()
@@ -108,10 +137,14 @@ def test_main_db_command(monkeypatch):
 
 
 def test_main_invalid_json_path(monkeypatch):
-    monkeypatch.setattr(sys, "argv", ["prog", "run", "--json_path", "/nonexistent/path.json"])
+    monkeypatch.setattr(
+        sys, "argv", ["prog", "run", "--json_path", "/nonexistent/path.json"]
+    )
     monkeypatch.setattr(main.logger, "error", MagicMock())
     monkeypatch.setattr(Path, "exists", lambda self: False)
-    monkeypatch.setattr(sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code)))
+    monkeypatch.setattr(
+        sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code))
+    )
 
     with pytest.raises(SystemExit):
         main.main()
@@ -119,13 +152,20 @@ def test_main_invalid_json_path(monkeypatch):
     main.logger.error.assert_called_once()
 
 
-@pytest.mark.parametrize("json_path_arg, expected_valid", [
-    (None, False),
-    ("", False),
-    ("somefile.json", True),
-])
+@pytest.mark.parametrize(
+    "json_path_arg, expected_valid",
+    [
+        (None, False),
+        ("", False),
+        ("somefile.json", True),
+    ],
+)
 def test_validated_path_handling(monkeypatch, json_path_arg, expected_valid):
-    monkeypatch.setattr(sys, "argv", ["prog", "run"] + (["--json_path", json_path_arg] if json_path_arg else []))
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["prog", "run"] + (["--json_path", json_path_arg] if json_path_arg else []),
+    )
 
     # Prepare a mock for logger.error
     mock_logger_error = MagicMock()

@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to the hollywood_pub_sub project will be documented in this file
 
+## [0.1.2] - 2025-08-03
+### Added
+- Include *CHANGELOG.md* and *README.md* in sphinx documentation
+- Add linter
+### Changed
+- Rename CI jobs
+### Fixed
+- Install required group depedencies for each CI job
+
 ## [0.1.1] - 2025-07-31
 ### Added
 - Auto generate sphinx documentation with pdm command

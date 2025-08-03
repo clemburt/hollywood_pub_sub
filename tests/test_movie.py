@@ -1,5 +1,5 @@
-from pydantic import ValidationError
 import pytest
+from pydantic import ValidationError
 
 from hollywood_pub_sub.movie import Movie
 
@@ -14,7 +14,7 @@ def test_movie_creation_success():
         director="The Wachowskis",
         composer="Don Davis",
         cast=["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
-        year=1999
+        year=1999,
     )
     assert movie.title == "The Matrix"
     assert movie.director == "The Wachowskis"
@@ -35,7 +35,7 @@ def test_movie_cast_must_be_list_of_strings():
             director="Some Director",
             composer="Some Composer",
             cast=["Actor 1", 123, "Actor 3"],  # 123 is invalid
-            year=2020
+            year=2020,
         )
 
 
@@ -50,35 +50,24 @@ def test_movie_required_fields():
             director="Director",
             composer="Composer",
             cast=["Actor A", "Actor B"],
-            year=2000
+            year=2000,
         )
 
     # Missing director
     with pytest.raises(ValidationError):
         Movie(
-            title="Title",
-            composer="Composer",
-            cast=["Actor A", "Actor B"],
-            year=2000
+            title="Title", composer="Composer", cast=["Actor A", "Actor B"], year=2000
         )
 
     # Missing composer
     with pytest.raises(ValidationError):
         Movie(
-            title="Title",
-            director="Director",
-            cast=["Actor A", "Actor B"],
-            year=2000
+            title="Title", director="Director", cast=["Actor A", "Actor B"], year=2000
         )
 
     # Missing cast
     with pytest.raises(ValidationError):
-        Movie(
-            title="Title",
-            director="Director",
-            composer="Composer",
-            year=2000
-        )
+        Movie(title="Title", director="Director", composer="Composer", year=2000)
 
 
 def test_movie_year_must_be_int_or_none():
@@ -92,5 +81,5 @@ def test_movie_year_must_be_int_or_none():
             director="Director",
             composer="Composer",
             cast=["Actor 1"],
-            year="Not a year"  # invalid type
+            year="Not a year",  # invalid type
         )

@@ -1,15 +1,16 @@
+import inspect
 import logging
 import sys
-import inspect
 
 COLOR_MAP = {
-    "DEBUG": "\033[36m",    # Cyan
-    "INFO": "\033[32m",     # Green
+    "DEBUG": "\033[36m",  # Cyan
+    "INFO": "\033[32m",  # Green
     "WARNING": "\033[33m",  # Yellow
-    "ERROR": "\033[31m",    # Red
-    "CRITICAL": "\033[41m", # Red background
+    "ERROR": "\033[31m",  # Red
+    "CRITICAL": "\033[41m",  # Red background
 }
 RESET_COLOR = "\033[0m"
+
 
 class ColoredFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
@@ -34,14 +35,17 @@ class ColoredFormatter(logging.Formatter):
         cls_part = cls_name if cls_name else None
         method_part = func_name
         if cls_part:
-            header = \
-                f"{color}[{timestamp}] [{package_name}] {record.levelname} " \
+            header = (
+                f"{color}[{timestamp}] [{package_name}] {record.levelname} "
                 f"[{file_name}:{line_number}:{cls_part}:{method_part}]{reset} {record.getMessage()}"
+            )
         else:
-            header = \
-                f"{color}[{timestamp}] [{package_name}] {record.levelname} " \
+            header = (
+                f"{color}[{timestamp}] [{package_name}] {record.levelname} "
                 f"[{file_name}:{line_number}:{method_part}]{reset} {record.getMessage()}"
+            )
         return header
+
 
 # Create global logger instance
 logger = logging.getLogger(name="hollywood_pub_sub")

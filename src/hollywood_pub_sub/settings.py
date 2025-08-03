@@ -7,6 +7,7 @@ class ComposerSettings(BaseSettings):
     """
     Composer settings that can be extended with env support if needed.
     """
+
     composers: List[str] = [
         "Alex North",
         "Alexandre Desplat",
@@ -73,7 +74,7 @@ class ComposerSettings(BaseSettings):
         "Stephen Sondheim",
         "Trevor Jones",
         "Vladimir Cosma",
-        "Wojciech Kilar"
+        "Wojciech Kilar",
     ]
 
     model_config = SettingsConfigDict(env_prefix="COMPOSER_", case_sensitive=False)

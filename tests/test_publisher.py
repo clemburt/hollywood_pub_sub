@@ -1,5 +1,5 @@
-from hollywood_pub_sub.publisher import Publisher
 from hollywood_pub_sub.movie import Movie
+from hollywood_pub_sub.publisher import Publisher
 
 
 def test_subscribe_and_publish(monkeypatch):
@@ -13,7 +13,7 @@ def test_subscribe_and_publish(monkeypatch):
         director="Christopher Nolan",
         composer="Hans Zimmer",
         cast=["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
-        year=2010
+        year=2010,
     )
     # Initialize publisher with a list containing the movie
     publisher = Publisher(movies=[movie])
@@ -49,7 +49,7 @@ def test_publish_multiple_subscribers():
         director="Christopher Nolan",
         composer="Hans Zimmer",
         cast=["Christian Bale", "Heath Ledger"],
-        year=2008
+        year=2008,
     )
     publisher = Publisher(movies=[movie])
 
@@ -87,7 +87,7 @@ def test_no_subscribers_publish():
         director="Christopher Nolan",
         composer="Hans Zimmer",
         cast=["Matthew McConaughey", "Anne Hathaway"],
-        year=2014
+        year=2014,
     )
     publisher = Publisher(movies=[movie])
 

@@ -7,5 +7,6 @@ Welcome to hollywood_pub_sub's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   Purpose <purpose>
+   README <readme>
    Source code <modules>
+   CHANGELOG <changelog>

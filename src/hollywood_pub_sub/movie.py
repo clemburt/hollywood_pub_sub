@@ -28,6 +28,4 @@ class Movie(BaseSettings):
     cast: List[str]
     year: int
 
-    model_config = ConfigDict(
-        extra="forbid"  # Disallow unexpected fields
-    )
+    model_config = ConfigDict(extra="forbid")  # Disallow unexpected fields

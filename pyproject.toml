@@ -27,6 +27,8 @@ dev = [
     "pytest>=8.4.1",
     "pytest-cov>=6.2.1",
     "pre-commit>=4.2.0",
+    "isort>=6.0.1",
+    "black>=25.1.0",
 ]
 test = [
     "pytest>=8.4.1",
@@ -36,6 +38,11 @@ doc = [
     "sphinx>=8.2.3",
     "sphinx-autodoc-typehints>=3.2.0",
     "sphinx-rtd-theme>=3.0.2",
+    "myst-parser>=4.0.1",
+    "sphinx-copybutton>=0.5.2",
+]
+lint = [
+    "pylint>=3.3.7",
 ]
 
 [tool.pytest.ini_options]
@@ -71,10 +78,17 @@ test.composite = [
   "{pdm} sync -dG test",
   "pytest --cov=src --verbose --junit-xml=test.xml --cov-report=xml:coverage.xml --cov-report=term {args:tests} -o log_cli=true -o log_cli_level=DEBUG -vvv"
 ]
+# This validates the JSON database file
 validate-json = "python scripts/validate_movie_database_json.py"
+# Command to copy README.md and CHANGELOG.md to docs/source
+copy-changelog = "cp CHANGELOG.md docs/source/"
+copy-readme = "cp README.md docs/source/"
 # This generates .rst files from your Python modules using Sphinx autodoc
 generate-docs = "sphinx-apidoc -o docs/source src"
 # This builds HTML documentation from the source files
 build-docs = "sphinx-build -b html docs/source docs/build"
 # Composite command that runs both generation and build
-doc = { composite = ["generate-docs", "build-docs"] }
+doc = { composite = ["copy-changelog", "copy-readme", "generate-docs", "build-docs"] }
+# Linting command to run pylint on the codebase with scoring enabled
+# Returns 0 (non-error) status code to prevent CI job fail
+lint = "pylint --score=y --output-format=text --exit-zero src"
