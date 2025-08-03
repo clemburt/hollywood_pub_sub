@@ -7,8 +7,10 @@ All notable changes to the hollywood_pub_sub project will be documented in this 
 - Add linter
 ### Changed
 - Rename CI jobs
+- Pass Docker image as container
 ### Fixed
 - Install required group depedencies for each CI job
+- Use built Docker image in all CI jobs
 
 ## [0.1.1] - 2025-07-31
 ### Added
