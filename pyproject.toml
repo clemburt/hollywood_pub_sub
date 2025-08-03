@@ -90,4 +90,4 @@ build-docs = "sphinx-build -b html docs/source docs/build"
 # Composite command that runs both generation and build
 doc = { composite = ["copy-changelog", "copy-readme", "generate-docs", "build-docs"] }
 # Linting command to run pylint on the codebase with scoring enabled.
-lint = "pylint --score=y --output-format=text scripts src"
+lint = "pylint --score=y --output-format=text src"
