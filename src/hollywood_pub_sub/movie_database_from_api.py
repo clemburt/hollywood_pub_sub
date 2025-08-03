@@ -1,11 +1,11 @@
 import time
-from typing import List, Dict, Optional, Set, Union
+from typing import Dict, List, Optional, Set, Union
 
-from pydantic import Field, PositiveInt
 import requests
+from pydantic import Field, PositiveInt
 
-from hollywood_pub_sub.movie import Movie
 from hollywood_pub_sub.logger import logger
+from hollywood_pub_sub.movie import Movie
 from hollywood_pub_sub.movie_database import MovieDatabase
 from hollywood_pub_sub.settings import ComposerSettings
 
@@ -39,7 +39,9 @@ class MovieDatabaseFromAPI(MovieDatabase):
     """
 
     api_key: str = Field(..., description="TMDb API key")
-    max_movies_per_composer: PositiveInt = Field(..., description="Max movies to fetch per composer")
+    max_movies_per_composer: PositiveInt = Field(
+        ..., description="Max movies to fetch per composer"
+    )
     composers: List[str] = Field(default_factory=lambda: ComposerSettings().composers)
 
     BASE_URL: str = "https://api.themoviedb.org/3"
@@ -93,9 +95,10 @@ class MovieDatabaseFromAPI(MovieDatabase):
             crew = credits.get("crew", [])
 
             film_credits = [
-                credit for credit in crew
+                credit
+                for credit in crew
                 if credit.get("job") in ("Original Music Composer", "Music", "Composer")
-            ][:self.max_movies_per_composer]
+            ][: self.max_movies_per_composer]
 
             for credit in film_credits:
                 movie_id = credit["id"]
@@ -110,8 +113,15 @@ class MovieDatabaseFromAPI(MovieDatabase):
                         title=details.get("title", "Unknown"),
                         director=self.extract_director(details),
                         composer=composer,
-                        cast=self.extract_main_cast(credits=details.get("credits", {}), max_cast=self.max_movies_per_composer),
-                        year=int(details["release_date"][:4]) if details.get("release_date") else None,
+                        cast=self.extract_main_cast(
+                            credits=details.get("credits", {}),
+                            max_cast=self.max_movies_per_composer,
+                        ),
+                        year=(
+                            int(details["release_date"][:4])
+                            if details.get("release_date")
+                            else None
+                        ),
                     )
                     self._movies.append(movie)
                     logger.info(f"✅ Added movie: {movie.title}")
@@ -164,7 +174,9 @@ class MovieDatabaseFromAPI(MovieDatabase):
         data = self.tmdb_get("/search/person", {"query": name})
         results = data.get("results", [])
         music_departments = {"Sound", "Music", "Music Department"}
-        candidates = [p for p in results if p.get("known_for_department") in music_departments]
+        candidates = [
+            p for p in results if p.get("known_for_department") in music_departments
+        ]
         if not candidates:
             return None
         return max(candidates, key=lambda p: p.get("popularity", 0))["id"]
@@ -216,7 +228,9 @@ class MovieDatabaseFromAPI(MovieDatabase):
             Director's name, or "Unknown" if not found.
         """
         crew = details.get("credits", {}).get("crew", [])
-        directors = [member["name"] for member in crew if member.get("job") == "Director"]
+        directors = [
+            member["name"] for member in crew if member.get("job") == "Director"
+        ]
         return directors[0] if directors else "Unknown"
 
     def extract_main_cast(self, credits: Dict, max_cast: int) -> List[str]:

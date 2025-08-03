@@ -1,18 +1,13 @@
-from hollywood_pub_sub.subscriber import Subscriber
 from hollywood_pub_sub.movie import Movie
+from hollywood_pub_sub.subscriber import Subscriber
 
 
 def make_movie(title="Title", composer="Composer", director="Director", year=2000):
     """
     Helper function to quickly create a Movie instance with default or given values.
     """
-    return Movie(
-        title=title,
-        composer=composer,
-        director=director,
-        cast=[],
-        year=year
-    )
+    return Movie(title=title, composer=composer, director=director, cast=[], year=year)
+
 
 def test_on_movie_published_increments_and_stores(monkeypatch):
     """
@@ -29,8 +24,10 @@ def test_on_movie_published_increments_and_stores(monkeypatch):
 
     # Replace announce_win method with a spy to check if it is called
     announce_called = {"called": False}
+
     def fake_announce_win():
         announce_called["called"] = True
+
     monkeypatch.setattr(sub, "announce_win", fake_announce_win)
 
     # Publish first movie with matching composer
@@ -50,6 +47,7 @@ def test_on_movie_published_increments_and_stores(monkeypatch):
     assert sub.movies_count == 2  # unchanged
     assert sub.movies_won == [movie1, movie2]  # unchanged
 
+
 def test_has_won_behavior():
     """
     Test the has_won() method returns True only when movies_count
@@ -68,6 +66,7 @@ def test_has_won_behavior():
     sub.movies_count = 3
     assert sub.has_won()
 
+
 def test_announce_win_logs(monkeypatch):
     """
     Test that announce_win() logs the winning message and filmography correctly.
@@ -76,7 +75,9 @@ def test_announce_win_logs(monkeypatch):
     sub = Subscriber(name="Alex North", winning_threshold=1)
 
     # Add a sample movie to subscriber's won list
-    movie = make_movie(title="Spartacus", composer="Alex North", director="Stanley Kubrick", year=1960)
+    movie = make_movie(
+        title="Spartacus", composer="Alex North", director="Stanley Kubrick", year=1960
+    )
     sub.movies_won.append(movie)
 
     logged_messages = []
@@ -95,7 +96,12 @@ def test_announce_win_logs(monkeypatch):
     sub.announce_win()
 
     # Check that the winning announcement message was logged
-    assert any("🏆 Subscriber composer Alex North has reached the winning threshold!" in msg for msg in logged_messages)
+    assert any(
+        "🏆 Subscriber composer Alex North has reached the winning threshold!" in msg
+        for msg in logged_messages
+    )
 
     # Check that the filmography entry is logged correctly
-    assert any("1) Spartacus (1960) by Stanley Kubrick" in msg for msg in logged_messages)
+    assert any(
+        "1) Spartacus (1960) by Stanley Kubrick" in msg for msg in logged_messages
+    )

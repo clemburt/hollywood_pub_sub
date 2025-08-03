@@ -6,45 +6,45 @@ import os
 import sys
 
 # Add the src directory to sys.path so autodoc can find your modules
-sys.path.insert(0, os.path.abspath('../../src'))
+sys.path.insert(0, os.path.abspath("../../src"))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-project = 'hollywood_pub_sub'
-copyright = '2025, Clement Burtscher'
-author = 'Clement Burtscher'
+project = "hollywood_pub_sub"
+copyright = "2025, Clement Burtscher"
+author = "Clement Burtscher"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 extensions = [
-    'myst_parser',                  # Allows the use of Markdown in Sphinx documentation
-    'sphinx.ext.autodoc',           # Enables automatic documentation generation from docstrings
-    'sphinx.ext.napoleon',          # Supports NumPy and Google style docstrings
-    'sphinx_autodoc_typehints',     # Shows type hints in function/method signatures in the documentation
-    'sphinx_copybutton',            # Adds "Copy" buttons to code blocks
+    "myst_parser",  # Allows the use of Markdown in Sphinx documentation
+    "sphinx.ext.autodoc",  # Enables automatic documentation generation from docstrings
+    "sphinx.ext.napoleon",  # Supports NumPy and Google style docstrings
+    "sphinx_autodoc_typehints",  # Shows type hints in function/method signatures in the documentation
+    "sphinx_copybutton",  # Adds "Copy" buttons to code blocks
 ]
 
 # Include both class and __init__ docstrings
-autoclass_content = 'both'
+autoclass_content = "both"
 
 # Settings for autodoc
 autodoc_default_options = {
-    'members': True,                # Include documented members
-    'undoc-members': True,          # Include members without docstrings
-    'private-members': False,       # Don't include _private members
-    'special-members': '__init__',  # Include __init__ method
-    'inherited-members': True,      # Include members from base classes
-    'show-inheritance': True,       # Show class inheritance info
+    "members": True,  # Include documented members
+    "undoc-members": True,  # Include members without docstrings
+    "private-members": False,  # Don't include _private members
+    "special-members": "__init__",  # Include __init__ method
+    "inherited-members": True,  # Include members from base classes
+    "show-inheritance": True,  # Show class inheritance info
 }
 
 # -- Paths for templates and static files (optional) -------------------------
-templates_path = ['_templates']
+templates_path = ["_templates"]
 exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+html_theme = "sphinx_rtd_theme"
+html_static_path = ["_static"]
 
 # Settings for Napoleon to support NumPy docstrings
 napoleon_numpy_docstring = True

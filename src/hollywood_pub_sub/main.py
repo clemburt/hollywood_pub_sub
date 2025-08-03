@@ -1,8 +1,8 @@
 import argparse
 import os
-from pathlib import Path
 import random
 import time
+from pathlib import Path
 from typing import Optional
 
 from pydantic import FilePath
@@ -10,8 +10,8 @@ from pydantic import FilePath
 from hollywood_pub_sub.logger import logger
 from hollywood_pub_sub.movie_database_factory import movie_database_factory
 from hollywood_pub_sub.publisher import Publisher
-from hollywood_pub_sub.subscriber import Subscriber
 from hollywood_pub_sub.settings import ComposerSettings
+from hollywood_pub_sub.subscriber import Subscriber
 
 
 def run_game(
@@ -35,7 +35,9 @@ def run_game(
         Number of collected movies needed by a subscriber to win. Defaults to 3.
     """
     if json_path is None and api_key is None:
-        logger.error("❌ You must provide either --json_path or --api_key (or set TMDB_API_KEY).")
+        logger.error(
+            "❌ You must provide either --json_path or --api_key (or set TMDB_API_KEY)."
+        )
         exit(1)
 
     movie_db = movie_database_factory(
@@ -64,7 +66,9 @@ def run_game(
         winners = [s for s in subscribers if s.has_won()]
         if winners:
             winner = winners[0]
-            logger.info(f"🏆 Winner is subscriber composer {winner.name} with {winner.movies_count} movies!")
+            logger.info(
+                f"🏆 Winner is subscriber composer {winner.name} with {winner.movies_count} movies!"
+            )
             break
     else:
         logger.info("👎 No winner reached the threshold.")
@@ -75,7 +79,9 @@ def print_composers() -> None:
     Print the list of composers from ComposerSettings.
     """
     composers = ComposerSettings().composers
-    logger.info("List of composers:\n" + "\n".join(f"🎶 {composer}" for composer in composers))
+    logger.info(
+        "List of composers:\n" + "\n".join(f"🎶 {composer}" for composer in composers)
+    )
 
 
 def main() -> None:
@@ -86,14 +92,30 @@ def main() -> None:
     - 'run': run the Publisher-Subscriber movie game
     - 'db': list available composers
     """
-    parser = argparse.ArgumentParser(description="🎬 Hollywood Publisher-Subscriber CLI")
+    parser = argparse.ArgumentParser(
+        description="🎬 Hollywood Publisher-Subscriber CLI"
+    )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     run_parser = subparsers.add_parser("run", help="Run the movie game")
-    run_parser.add_argument("--api_key", type=str, help="TMDb API key (or set TMDB_API_KEY env var)")
-    run_parser.add_argument("--json_path", type=str, help="Path to a JSON file with preloaded movies")
-    run_parser.add_argument("--max_movies_per_composer", type=int, default=5, help="Maximum movies per composer (API)")
-    run_parser.add_argument("--winning_threshold", type=int, default=3, help="Movies needed by a subscriber to win")
+    run_parser.add_argument(
+        "--api_key", type=str, help="TMDb API key (or set TMDB_API_KEY env var)"
+    )
+    run_parser.add_argument(
+        "--json_path", type=str, help="Path to a JSON file with preloaded movies"
+    )
+    run_parser.add_argument(
+        "--max_movies_per_composer",
+        type=int,
+        default=5,
+        help="Maximum movies per composer (API)",
+    )
+    run_parser.add_argument(
+        "--winning_threshold",
+        type=int,
+        default=3,
+        help="Movies needed by a subscriber to win",
+    )
 
     subparsers.add_parser("db", help="Print list of composers")
 
@@ -104,7 +126,9 @@ def main() -> None:
         if args.json_path:
             path_obj = Path(args.json_path).expanduser().resolve()
             if not path_obj.exists() or not path_obj.is_file():
-                logger.error(f"❌ JSON path does not exist or is not a file: {path_obj}")
+                logger.error(
+                    f"❌ JSON path does not exist or is not a file: {path_obj}"
+                )
                 exit(1)
             validated_path = FilePath(path_obj)
 

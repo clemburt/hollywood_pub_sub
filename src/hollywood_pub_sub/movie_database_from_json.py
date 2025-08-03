@@ -24,7 +24,9 @@ class MovieDatabaseFromJSON(RootModel[List[Movie]], MovieDatabase):
         """
         Automatically derive the list of unique composers from the movies.
         """
-        composers_set: Set[str] = {movie.composer for movie in self.root if movie.composer}
+        composers_set: Set[str] = {
+            movie.composer for movie in self.root if movie.composer
+        }
         return sorted(composers_set)
 
     @classmethod

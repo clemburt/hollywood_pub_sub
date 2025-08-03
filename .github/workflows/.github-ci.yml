@@ -17,6 +17,7 @@ jobs:
     name: 🐋 Build and push Docker Image
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v3
 
       # Authenticate to GitHub Container Registry
@@ -38,12 +39,19 @@ jobs:
   test:
     name: 🧪 Run tests
     runs-on: ubuntu-latest
+    # This job depends on the build job
     needs: build
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v3
 
-      # Run tests using PDM script (defined in pyproject.toml)
-      - name: Run tests with PDM inside container
+      - name: Install test group dependencies with PDM
+        run: |
+          docker run --rm \
+            ${{ env.IMAGE_NAME }} \
+            pdm install -dG dev
+
+      - name: Run tests with PDM
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
@@ -55,6 +63,7 @@ jobs:
   run_main:
     name: 🖥️ Run Main (Group)
     runs-on: ubuntu-latest
+    # This job depends on the build job
     needs: build
     if: |
       github.ref == 'refs/heads/main' ||
@@ -70,9 +79,12 @@ jobs:
   run_main_api:
     name: 🖥️🛜 Run Main CLI - API
     runs-on: ubuntu-latest
+    # This job depends on the run_main job
     needs: run_main
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v3
+
       - name: Run CLI - API
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
@@ -88,9 +100,12 @@ jobs:
   run_main_json:
     name: 🖥️🗒️ Run Main CLI - JSON
     runs-on: ubuntu-latest
+    # This job depends on the run_main job
     needs: run_main
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v3
+
       - name: Run CLI - JSON
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
@@ -105,6 +120,7 @@ jobs:
   doc:
     name: 📚 Build and deploy Docs
     runs-on: ubuntu-latest
+    # This job depends on the build job
     needs: build
     if: |
       github.ref == 'refs/heads/main' ||
@@ -114,23 +130,23 @@ jobs:
         contains(github.event.pull_request.labels.*.name, 'documentation')
       )
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install PDM
+      - name: Install doc group dependencies with PDM
         run: |
-          curl -sSL https://pdm-project.org/install-pdm.py | python3 -
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          docker run --rm \
+            ${{ env.IMAGE_NAME }} \
+            pdm install -dG doc
 
-      - name: Install doc dependencies
-        run: pdm install -G doc
-
-      - name: Build documentation
-        run: pdm doc
+      - name: Build documentation with PDM
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          docker run --rm \
+            -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
+            ${{ env.IMAGE_NAME }} \
+            pdm doc
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -138,3 +154,27 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/build
           publish_branch: gh-pages
+
+  lint:
+    name: 🩺 Lint source code
+    runs-on: ubuntu-latest
+    # This job depends on the build job
+    needs: build
+    steps:
+      # Checkout the repository
+      - uses: actions/checkout@v3
+
+      - name: Install lint group dependencies with PDM
+        run: |
+          docker run --rm \
+            ${{ env.IMAGE_NAME }} \
+            pdm install -dG lint
+
+      - name: Run linting with PDM
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          docker run --rm \
+            -e TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}" \
+            ${{ env.IMAGE_NAME }} \
+            pdm lint

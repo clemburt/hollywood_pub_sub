@@ -1,6 +1,6 @@
 import json
-from pathlib import Path
 import tempfile
+from pathlib import Path
 
 import pytest
 
@@ -91,11 +91,15 @@ def test_filter_by_cast_single_actor(movie_db):
 def test_filter_by_cast_multiple_actors(movie_db):
     filtered = movie_db.filter(cast=["John Travolta", "Samuel L. Jackson"])
     assert len(filtered) == 1
-    assert all(actor in filtered[0].cast for actor in ["John Travolta", "Samuel L. Jackson"])
+    assert all(
+        actor in filtered[0].cast for actor in ["John Travolta", "Samuel L. Jackson"]
+    )
 
 
 def test_filter_combined_criteria(movie_db):
-    filtered = movie_db.filter(director="Christopher Nolan", composer="Hans Zimmer", year=2008)
+    filtered = movie_db.filter(
+        director="Christopher Nolan", composer="Hans Zimmer", year=2008
+    )
     assert len(filtered) == 1
     assert filtered[0].title == "The Dark Knight"
 

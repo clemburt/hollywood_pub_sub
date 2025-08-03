@@ -76,7 +76,6 @@ class Subscriber:
         ]
         filmography_block = (
             f"🏆 Subscriber composer {self.name} has reached the winning threshold!\n"
-            "🎞️  Filmography:\n" +
-            "\n".join(filmography_lines)
+            "🎞️  Filmography:\n" + "\n".join(filmography_lines)
         )
         logger.info(filmography_block)
