@@ -89,5 +89,6 @@ generate-docs = "sphinx-apidoc -o docs/source src"
 build-docs = "sphinx-build -b html docs/source docs/build"
 # Composite command that runs both generation and build
 doc = { composite = ["copy-changelog", "copy-readme", "generate-docs", "build-docs"] }
-# Linting command to run pylint on the codebase with scoring enabled.
+# Linting command to run pylint on the codebase with scoring enabled
+# Returns 0 (non-error) status code to prevent CI job fail
 lint = "pylint --score=y --output-format=text --exit-zero src"
