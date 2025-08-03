@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; hollywood_pub_sub  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src" href="modules.html" />
+    <link rel="prev" title="Welcome to hollywood_pub_sub’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            hollywood_pub_sub
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">README</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-command">run command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#db-command">db command</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authors">Authors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Source code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">CHANGELOG</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hollywood_pub_sub</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#purpose"><span class="xref myst">Purpose</span></a></p></li>
+<li><p><a class="reference internal" href="#installation"><span class="xref myst">Installation</span></a></p></li>
+<li><p><a class="reference internal" href="#usage"><span class="xref myst">Usage</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#run-command"><span class="xref myst">run command</span></a></p></li>
+<li><p><a class="reference internal" href="#db-command"><span class="xref myst">db command</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tests"><span class="xref myst">Tests</span></a></p></li>
+<li><p><a class="reference internal" href="#documentation"><span class="xref myst">Documentation</span></a></p></li>
+<li><p><a class="reference internal" href="#license"><span class="xref myst">License</span></a></p></li>
+<li><p><a class="reference internal" href="#authors"><span class="xref myst">Authors</span></a></p></li>
+</ul>
+</section>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h2>
+<p>A Publisher-Subscriber simulation game between film <strong>directors</strong> and <strong>composers</strong>, using pdm and pydantic:</p>
+<ul class="simple">
+<li><p>a movie database is built by querying the <a class="reference external" href="https://developer.themoviedb.org/docs/getting-started">TMDb api</a>, retieving details from each movie (title, director, composer, cast, year)</p></li>
+<li><p>then movie announcements are randomly published: a director (publisher) tells that he is working on a movie from the database and looking for a composer</p></li>
+<li><p>all composers (subscribers) from the database subscribe to these announcements, and wait for a movie in which they are credited</p></li>
+<li><p>if that is the case, they take the assignment</p></li>
+<li><p>the winner is the 1st composer to secure a given number of contracts</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>Make sure you have <a class="reference external" href="https://pdm.fming.dev/">PDM</a> installed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pdm<span class="w"> </span>install
+</pre></div>
+</div>
+<p>If running inside Docker, you can use the published image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/clemburt/hollywood_pub_sub:latest
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>You can use the CLI either locally or from the Docker container.</p>
+<section id="run-command">
+<h3>run command<a class="headerlink" href="#run-command" title="Link to this heading"></a></h3>
+<p>Runs the full Publisher-Subscriber simulation game. The CLI will select movies for composers and publish them one by one. When a composer reaches the winning threshold (number of movies), the game stops and the winner is announced.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hollywood_pub_sub<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--api_key<span class="w"> </span>YOUR_TMDB_API_KEY<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max_movies_per_composer<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--winning_threshold<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--api_key</span></code></p></td>
+<td><p>TMDb API key (can also be set via <code class="docutils literal notranslate"><span class="pre">TMDB_API_KEY</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--max_movies_per_composer</span></code></p></td>
+<td><p>Max movies to fetch per composer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--winning_threshold</span></code></p></td>
+<td><p>Number of movies needed for a composer to win</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>You can also run it via Docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">TMDB_API_KEY</span><span class="o">=</span>your_key<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/clemburt/hollywood_pub_sub:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>hollywood_pub_sub<span class="w"> </span>run<span class="w"> </span>--max_movies_per_composer<span class="w"> </span><span class="m">10</span><span class="w"> </span>--winning_threshold<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:19:59<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>publisher.py:62:publish<span class="o">]</span><span class="w"> </span>📣<span class="w"> </span>Publisher<span class="w"> </span>director<span class="w"> </span>Vittorio<span class="w"> </span>De<span class="w"> </span>Sica:
+We<span class="w"> </span>are<span class="w"> </span>about<span class="w"> </span>to<span class="w"> </span>start<span class="w"> </span>shooting<span class="w"> </span>the<span class="w"> </span>movie<span class="w"> </span>Sunflower<span class="w"> </span><span class="o">(</span><span class="m">1970</span><span class="o">)</span>!
+Who<span class="w"> </span>wants<span class="w"> </span>to<span class="w"> </span>score<span class="w"> </span>it?
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:19:59<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>subscriber.py:50:on_movie_published<span class="o">]</span><span class="w"> </span>✋<span class="w"> </span>Subscriber<span class="w"> </span>composer<span class="w"> </span>Henry<span class="w"> </span>Mancini:
+Hi<span class="w"> </span>Vittorio<span class="w"> </span>De<span class="w"> </span>Sica!<span class="w"> </span>I<span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>the<span class="w"> </span>assignment<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>movie<span class="w"> </span>Sunflower<span class="w"> </span><span class="o">(</span><span class="m">1970</span><span class="o">)</span>!
+Total:<span class="w"> </span><span class="m">3</span>
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:19:59<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>publisher.py:62:publish<span class="o">]</span><span class="w"> </span>📣<span class="w"> </span>Publisher<span class="w"> </span>director<span class="w"> </span>Peter<span class="w"> </span>Jackson:
+We<span class="w"> </span>are<span class="w"> </span>about<span class="w"> </span>to<span class="w"> </span>start<span class="w"> </span>shooting<span class="w"> </span>the<span class="w"> </span>movie<span class="w"> </span>The<span class="w"> </span>Lord<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Rings:<span class="w"> </span>The<span class="w"> </span>Return<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>King<span class="w"> </span><span class="o">(</span><span class="m">2003</span><span class="o">)</span>!
+Who<span class="w"> </span>wants<span class="w"> </span>to<span class="w"> </span>score<span class="w"> </span>it?
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:19:59<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>subscriber.py:50:on_movie_published<span class="o">]</span><span class="w"> </span>✋<span class="w"> </span>Subscriber<span class="w"> </span>composer<span class="w"> </span>Howard<span class="w"> </span>Shore:
+Hi<span class="w"> </span>Peter<span class="w"> </span>Jackson!<span class="w"> </span>I<span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>the<span class="w"> </span>assignment<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>movie<span class="w"> </span>The<span class="w"> </span>Lord<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Rings:<span class="w"> </span>The<span class="w"> </span>Return<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>King<span class="w"> </span><span class="o">(</span><span class="m">2003</span><span class="o">)</span>!
+Total:<span class="w"> </span><span class="m">1</span>
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:20:23<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>publisher.py:62:publish<span class="o">]</span><span class="w"> </span>📣<span class="w"> </span>Publisher<span class="w"> </span>director<span class="w"> </span>Clint<span class="w"> </span>Eastwood:
+We<span class="w"> </span>are<span class="w"> </span>about<span class="w"> </span>to<span class="w"> </span>start<span class="w"> </span>shooting<span class="w"> </span>the<span class="w"> </span>movie<span class="w"> </span>The<span class="w"> </span>Bridges<span class="w"> </span>of<span class="w"> </span>Madison<span class="w"> </span>County<span class="w"> </span><span class="o">(</span><span class="m">1995</span><span class="o">)</span>!
+Who<span class="w"> </span>wants<span class="w"> </span>to<span class="w"> </span>score<span class="w"> </span>it?
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:20:23<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>subscriber.py:50:on_movie_published<span class="o">]</span><span class="w"> </span>✋<span class="w"> </span>Subscriber<span class="w"> </span>composer<span class="w"> </span>Lennie<span class="w"> </span>Niehaus:
+Hi<span class="w"> </span>Clint<span class="w"> </span>Eastwood!<span class="w"> </span>I<span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>the<span class="w"> </span>assignment<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>movie<span class="w"> </span>The<span class="w"> </span>Bridges<span class="w"> </span>of<span class="w"> </span>Madison<span class="w"> </span>County<span class="w"> </span><span class="o">(</span><span class="m">1995</span><span class="o">)</span>!
+Total:<span class="w"> </span><span class="m">4</span>
+
+<span class="o">[</span>...<span class="o">]</span>
+
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:20:24<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>publisher.py:62:publish<span class="o">]</span><span class="w"> </span>📣<span class="w"> </span>Publisher<span class="w"> </span>director<span class="w"> </span>Walter<span class="w"> </span>Hill:
+We<span class="w"> </span>are<span class="w"> </span>about<span class="w"> </span>to<span class="w"> </span>start<span class="w"> </span>shooting<span class="w"> </span>the<span class="w"> </span>movie<span class="w"> </span><span class="m">48</span><span class="w"> </span>Hrs.<span class="w"> </span><span class="o">(</span><span class="m">1982</span><span class="o">)</span>!
+Who<span class="w"> </span>wants<span class="w"> </span>to<span class="w"> </span>score<span class="w"> </span>it?
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:20:24<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>subscriber.py:50:on_movie_published<span class="o">]</span><span class="w"> </span>✋<span class="w"> </span>Subscriber<span class="w"> </span>composer<span class="w"> </span>James<span class="w"> </span>Horner:
+Hi<span class="w"> </span>Walter<span class="w"> </span>Hill!<span class="w"> </span>I<span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>the<span class="w"> </span>assignment<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>movie<span class="w"> </span><span class="m">48</span><span class="w"> </span>Hrs.<span class="w"> </span><span class="o">(</span><span class="m">1982</span><span class="o">)</span>!
+Total:<span class="w"> </span><span class="m">5</span>
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:20:24<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>subscriber.py:82:announce_win<span class="o">]</span><span class="w"> </span>🏆<span class="w"> </span>Subscriber<span class="w"> </span>composer<span class="w"> </span>James<span class="w"> </span>Horner<span class="w"> </span>has<span class="w"> </span>reached<span class="w"> </span>the<span class="w"> </span>winning<span class="w"> </span>threshold!
+🎞️<span class="w">  </span>Filmography:
+<span class="m">1</span><span class="o">)</span><span class="w"> </span>Star<span class="w"> </span>Trek<span class="w"> </span>III:<span class="w"> </span>The<span class="w"> </span>Search<span class="w"> </span><span class="k">for</span><span class="w"> </span>Spock<span class="w"> </span><span class="o">(</span><span class="m">1984</span><span class="o">)</span><span class="w"> </span>by<span class="w"> </span>Leonard<span class="w"> </span>Nimoy
+<span class="m">2</span><span class="o">)</span><span class="w"> </span>The<span class="w"> </span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Rose<span class="w"> </span><span class="o">(</span><span class="m">1986</span><span class="o">)</span><span class="w"> </span>by<span class="w"> </span>Jean-Jacques<span class="w"> </span>Annaud
+<span class="m">3</span><span class="o">)</span><span class="w"> </span>Titanic<span class="w"> </span><span class="o">(</span><span class="m">1997</span><span class="o">)</span><span class="w"> </span>by<span class="w"> </span>James<span class="w"> </span>Cameron
+<span class="m">4</span><span class="o">)</span><span class="w"> </span>Apollo<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="o">(</span><span class="m">1995</span><span class="o">)</span><span class="w"> </span>by<span class="w"> </span>Ron<span class="w"> </span>Howard
+<span class="m">5</span><span class="o">)</span><span class="w"> </span><span class="m">48</span><span class="w"> </span>Hrs.<span class="w"> </span><span class="o">(</span><span class="m">1982</span><span class="o">)</span><span class="w"> </span>by<span class="w"> </span>Walter<span class="w"> </span>Hill
+<span class="o">[</span><span class="m">2025</span>-07-20<span class="w"> </span><span class="m">21</span>:20:24<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>main.py:46:run_game<span class="o">]</span><span class="w"> </span>🏆<span class="w"> </span>Winner<span class="w"> </span>is<span class="w"> </span>subscriber<span class="w"> </span>composer<span class="w"> </span>James<span class="w"> </span>Horner<span class="w"> </span>with<span class="w"> </span><span class="m">5</span><span class="w"> </span>movies!
+</pre></div>
+</div>
+</section>
+<section id="db-command">
+<h3>db command<a class="headerlink" href="#db-command" title="Link to this heading"></a></h3>
+<p>Displays the list of composers used in the simulation (those the game fetches movies for).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hollywood_pub_sub<span class="w"> </span>db
+</pre></div>
+</div>
+<p>Or via Docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/clemburt/hollywood_pub_sub:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>hollywood_pub_sub<span class="w"> </span>db
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">2025</span>-07-21<span class="w"> </span><span class="m">00</span>:11:19<span class="o">]</span><span class="w"> </span><span class="o">[</span>hollywood_pub_sub<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span><span class="o">[</span>main.py:86:print_composers<span class="o">]</span><span class="w"> </span>List<span class="w"> </span>of<span class="w"> </span>composers:
+🎶<span class="w"> </span>Alex<span class="w"> </span>North
+🎶<span class="w"> </span>Alexandre<span class="w"> </span>Desplat
+🎶<span class="w"> </span>Angela<span class="w"> </span>Morley
+🎶<span class="w"> </span>Arthur<span class="w"> </span>B.<span class="w"> </span>Rubinstein
+🎶<span class="w"> </span>Basil<span class="w"> </span>Poledouris
+🎶<span class="w"> </span>Bernard<span class="w"> </span>Herrmann
+🎶<span class="w"> </span>Bill<span class="w"> </span>Conti
+🎶<span class="w"> </span>Christopher<span class="w"> </span>Young
+🎶<span class="w"> </span>Dave<span class="w"> </span>Grusin
+
+<span class="o">[</span>...<span class="o">]</span>
+
+🎶<span class="w"> </span>Ryuichi<span class="w"> </span>Sakamoto
+🎶<span class="w"> </span>Stephen<span class="w"> </span>Sondheim
+🎶<span class="w"> </span>Trevor<span class="w"> </span>Jones
+🎶<span class="w"> </span>Vladimir<span class="w"> </span>Cosma
+🎶<span class="w"> </span>Wojciech<span class="w"> </span>Kilar
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading"></a></h2>
+<p>Run the test suite using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pdm<span class="w"> </span>install<span class="w"> </span>-dG<span class="w"> </span><span class="nb">test</span>
+pdm<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>The Docker image installs only production dependencies (–prod), so tests must be run explicitly with test group install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/clemburt/hollywood_pub_sub:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pdm install -dG test &amp;&amp; pdm test&quot;</span>
+</pre></div>
+</div>
+<p>This will:</p>
+<ul class="simple">
+<li><p>Sync test dependencies</p></li>
+<li><p>Run all tests with coverage reporting</p></li>
+</ul>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<p>Build the sphinx documentation using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pdm<span class="w"> </span>install<span class="w"> </span>-dG<span class="w"> </span>doc
+pdm<span class="w"> </span>doc
+</pre></div>
+</div>
+<p>The Docker image installs only production dependencies (–prod), so doc must be run explicitly with doc group install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/clemburt/hollywood_pub_sub:latest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pdm install -dG doc &amp;&amp; pdm doc&quot;</span>
+</pre></div>
+</div>
+<p>📚 <a class="reference external" href="https://clemburt.github.io/hollywood_pub_sub/">Documentation</a></p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>MIT License</p>
+</section>
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/clemburt">BURTSCHER Clément</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to hollywood_pub_sub’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="src" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Clement Burtscher.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
