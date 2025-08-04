@@ -1,11 +1,12 @@
+"""Subscriber module handling the Subscriber class that listens to published movies and tracks wins."""
+
 from hollywood_pub_sub.logger import logger
 from hollywood_pub_sub.movie import Movie
 
 
 class Subscriber:
     """
-    Subscriber class that listens to published movies and tracks
-    the number of movies composed by its composer name.
+    Subscriber class that listens to published movies and tracks the number of movies composed by its composer name.
 
     Attributes
     ----------
@@ -21,17 +22,7 @@ class Subscriber:
     """
 
     def __init__(self, name: str, winning_threshold: int):
-        """
-        Initialize a Subscriber.
-
-        Parameters
-        ----------
-        name : str
-            Subscriber (composer) name.
-        winning_threshold : int, optional
-            Number of movies to reach to win.
-
-        """
+        """Initialize a Subscriber."""
         self.name = name
         self.movies_count = 0
         self.winning_threshold = winning_threshold
@@ -39,7 +30,7 @@ class Subscriber:
 
     def on_movie_published(self, movie: Movie) -> None:
         """
-        Callback invoked when a movie is published.
+        Invoke callback when a movie is published.
 
         Parameters
         ----------
@@ -59,21 +50,11 @@ class Subscriber:
                 self.announce_win()
 
     def has_won(self) -> bool:
-        """
-        Check if the subscriber has reached the winning threshold.
-
-        Returns
-        -------
-        bool
-            True if movies_count >= winning_threshold, else False.
-
-        """
+        """Return True if movies_count >= winning_threshold, else False."""
         return self.movies_count >= self.winning_threshold
 
     def announce_win(self) -> None:
-        """
-        Announce the subscriber as winner and print their movie track record.
-        """
+        """Announce the subscriber as winner and print their movie track record."""
         filmography_lines = [
             f"{idx}) {movie.title} ({movie.year}) by {movie.director}"
             for idx, movie in enumerate(self.movies_won, start=1)

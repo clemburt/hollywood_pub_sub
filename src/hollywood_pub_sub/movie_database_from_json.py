@@ -1,3 +1,5 @@
+"""Module providing MovieDatabaseFromJSON, a root model for movies loaded from JSON."""
+
 from typing import Self
 
 from pydantic import FilePath, RootModel, validate_call
@@ -9,21 +11,18 @@ from hollywood_pub_sub.movie_database import MovieDatabase
 class MovieDatabaseFromJSON(RootModel[list[Movie]], MovieDatabase):
     """
     A root model representing a database of movies.
+
     Uses a list of Movie instances as its root.
     """
 
     @property
     def movies(self) -> list[Movie]:
-        """
-        Access the list of movies stored in the root.
-        """
+        """Return the list of movies stored in the root."""
         return self.root
 
     @property
     def composers(self) -> list[str]:
-        """
-        Automatically derive the list of unique composers from the movies.
-        """
+        """Return a sorted list of unique composers from the movies."""
         composers_set: set[str] = {movie.composer for movie in self.root if movie.composer}
         return sorted(composers_set)
 

@@ -1,3 +1,9 @@
+"""
+Sphinx configuration file for the bowie_api_rest project documentation.
+
+This file contains settings and extensions used to generate the project documentation.
+"""
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:

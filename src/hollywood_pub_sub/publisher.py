@@ -1,3 +1,5 @@
+"""Module defining Publisher, which publishes movies to subscribed callbacks."""
+
 from collections.abc import Callable
 
 from hollywood_pub_sub.logger import logger

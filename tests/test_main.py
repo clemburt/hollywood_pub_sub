@@ -1,3 +1,5 @@
+"""Tests for the main module of hollywood_pub_sub."""
+
 from pathlib import Path
 import sys
 import types
@@ -10,7 +12,7 @@ import hollywood_pub_sub.main as main
 
 @pytest.fixture
 def fake_movies():
-    # Simple mock movie objects
+    """Provide a list of simple mock movie objects."""
     Movie = types.SimpleNamespace
     return [
         Movie(
@@ -39,6 +41,7 @@ def fake_movies():
 
 @pytest.fixture
 def fake_movie_db(fake_movies):
+    """Provide a MagicMock simulating the movie database with movies and composers."""
     db = MagicMock()
     db.movies = fake_movies
     db.composers = ["Composer1", "Composer2"]
@@ -46,6 +49,7 @@ def fake_movie_db(fake_movies):
 
 
 def test_run_game_exits_without_api_key_or_json(monkeypatch):
+    """Test run_game exits if no api_key or json_path is provided."""
     monkeypatch.setattr(main.logger, "error", MagicMock())
     monkeypatch.setattr(sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code)))
 
@@ -58,6 +62,7 @@ def test_run_game_exits_without_api_key_or_json(monkeypatch):
 
 
 def test_run_game_runs_with_json(monkeypatch, fake_movie_db):
+    """Test run_game runs correctly when json_path is provided."""
     # Patch factory to return our fake db
     monkeypatch.setattr(main, "movie_database_factory", lambda **kwargs: fake_movie_db)
 
@@ -93,6 +98,7 @@ def test_run_game_runs_with_json(monkeypatch, fake_movie_db):
 
 
 def test_print_composers(monkeypatch):
+    """Test print_composers outputs all composers."""
     # Patch ComposerSettings to return known composers
     monkeypatch.setattr(main, "ComposerSettings", lambda: types.SimpleNamespace(composers=["C1", "C2"]))
     monkeypatch.setattr(main.logger, "info", MagicMock())
@@ -104,6 +110,7 @@ def test_print_composers(monkeypatch):
 
 
 def test_main_run_command(monkeypatch):
+    """Test the main 'run' command parses args and calls run_game."""
     # Patch sys.argv to simulate CLI call
     monkeypatch.setattr(sys, "argv", ["prog", "run", "--api_key", "abc123"])
 
@@ -121,6 +128,7 @@ def test_main_run_command(monkeypatch):
 
 
 def test_main_db_command(monkeypatch):
+    """Test the main 'db' command calls print_composers."""
     monkeypatch.setattr(sys, "argv", ["prog", "db"])
 
     monkeypatch.setattr(main, "print_composers", MagicMock())
@@ -131,6 +139,7 @@ def test_main_db_command(monkeypatch):
 
 
 def test_main_invalid_json_path(monkeypatch):
+    """Test main exits with error when json_path does not exist."""
     monkeypatch.setattr(sys, "argv", ["prog", "run", "--json_path", "/nonexistent/path.json"])
     monkeypatch.setattr(main.logger, "error", MagicMock())
     monkeypatch.setattr(Path, "exists", lambda self: False)
@@ -151,6 +160,7 @@ def test_main_invalid_json_path(monkeypatch):
     ],
 )
 def test_validated_path_handling(monkeypatch, json_path_arg, expected_valid):
+    """Test main validates json_path argument correctly in CLI."""
     monkeypatch.setattr(
         sys,
         "argv",

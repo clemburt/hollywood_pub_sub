@@ -1,3 +1,5 @@
+"""Unit tests for the MovieDatabaseFromAPI class in hollywood_pub_sub."""
+
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -7,11 +9,13 @@ from hollywood_pub_sub.movie_database_from_api import MovieDatabaseFromAPI
 
 @pytest.fixture
 def fake_api_key() -> str:
+    """Provide a fake API key for testing purposes."""
     return "fake-api-key"
 
 
 @patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.tmdb_get")
 def test_search_person_returns_valid_composer_id(mock_tmdb_get: MagicMock, fake_api_key: str) -> None:
+    """Test that search_person correctly returns the composer ID when the person with the matching name and known_for_department 'Music' is found."""
     mock_tmdb_get.return_value = {
         "results": [
             {
@@ -35,6 +39,7 @@ def test_search_person_returns_valid_composer_id(mock_tmdb_get: MagicMock, fake_
 
 @patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.tmdb_get")
 def test_get_person_credits_returns_crew_dict(mock_tmdb_get: MagicMock, fake_api_key: str) -> None:
+    """Test that get_person_credits returns a dictionary containing the crew list for the specified person ID."""
     mock_tmdb_get.return_value = {"crew": [{"job": "Composer", "id": 1, "title": "Test Movie"}]}
     db = MovieDatabaseFromAPI(api_key=fake_api_key, max_movies_per_composer=1, composers=["Hans Zimmer"])
     credits = db.get_person_credits(123)
@@ -44,6 +49,7 @@ def test_get_person_credits_returns_crew_dict(mock_tmdb_get: MagicMock, fake_api
 
 @patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.tmdb_get")
 def test_get_movie_details_extracts_director_and_cast(mock_tmdb_get: MagicMock, fake_api_key: str) -> None:
+    """Test that get_movie_details returns movie details including credits, and that extract_director and extract_main_cast correctly extract the director's name and main cast list."""
     mock_tmdb_get.return_value = {
         "title": "Inception",
         "release_date": "2010-07-16",
@@ -78,6 +84,7 @@ def test_build_populates_movies(
     mock_search_person: MagicMock,
     fake_api_key: str,
 ) -> None:
+    """Test that the MovieDatabaseFromAPI builds its movie list correctly by populating movies with data returned from mocked API calls."""
     # Setup mocks
     mock_search_person.return_value = 777
     mock_get_person_credits.return_value = {

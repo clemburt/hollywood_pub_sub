@@ -1,3 +1,5 @@
+"""Module defining the abstract MovieDatabase base class for handling movie collections."""
+
 from abc import ABC, abstractmethod
 import json
 from pathlib import Path
@@ -17,20 +19,10 @@ class MovieDatabase(BaseModel, ABC):
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
-    # Suppression de l'attribut composers
-    # composers: List[str] = Field(default_factory=lambda: ComposerSettings().composers)
-
     @property
     @abstractmethod
     def movies(self) -> list[Movie]:
-        """
-        List of Movie instances. Must be implemented by subclasses.
-
-        Returns
-        -------
-        List[Movie]
-
-        """
+        """Return list of Movie instances (must be implemented by subclasses)."""
         raise NotImplementedError("Subclasses must implement the 'movies' property.")
 
     @validate_call
@@ -47,15 +39,15 @@ class MovieDatabase(BaseModel, ABC):
 
         Parameters
         ----------
-        title : Optional[str], optional
+        title : Optional[str]
             Exact title to match.
-        director : Optional[str], optional
+        director : Optional[str]
             Exact director name to match.
-        composer : Optional[str], optional
+        composer : Optional[str]
             Exact composer name to match.
-        year : Optional[int], optional
+        year : Optional[int]
             Release year to match.
-        cast : Optional[Union[str, List[str]]], optional
+        cast : Optional[Union[str, List[str]]]
             One or more cast members that must appear in the movie.
 
         Returns
@@ -88,10 +80,10 @@ class MovieDatabase(BaseModel, ABC):
 
         Parameters
         ----------
-        path : Optional[Path], optional
+        path : Optional[Path]
             Path to save the JSON file. If not provided, returns the JSON string.
-        indent : int, optional
-            Indentation level for JSON formatting. Default is 4.
+        indent : int
+            Indentation level for JSON formatting.
 
         Returns
         -------

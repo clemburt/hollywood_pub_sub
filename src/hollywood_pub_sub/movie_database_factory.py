@@ -1,3 +1,5 @@
+"""Module for constructing a MovieDatabase from a JSON file or the TMDb API."""
+
 from pathlib import Path
 
 from hollywood_pub_sub.movie_database import MovieDatabase
@@ -11,7 +13,7 @@ def movie_database_factory(
     json_path: str | Path | None = None,
 ) -> MovieDatabase:
     """
-    Factory function to build a MovieDatabase from either a JSON file or the TMDb API.
+    Create a MovieDatabase from either a JSON file or the TMDb API.
 
     Parameters
     ----------

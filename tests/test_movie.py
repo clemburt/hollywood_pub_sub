@@ -1,3 +1,5 @@
+"""Tests for the Movie model validation and creation."""
+
 from pydantic import ValidationError
 import pytest
 
@@ -5,10 +7,7 @@ from hollywood_pub_sub.movie import Movie
 
 
 def test_movie_creation_success():
-    """
-    Test that a Movie instance can be successfully created
-    with all required fields and valid data.
-    """
+    """Test successful creation of a Movie instance with valid data."""
     movie = Movie(
         title="The Matrix",
         director="The Wachowskis",
@@ -24,10 +23,7 @@ def test_movie_creation_success():
 
 
 def test_movie_cast_must_be_list_of_strings():
-    """
-    Test that the cast attribute must be a list of strings.
-    Passing invalid types should raise a ValidationError.
-    """
+    """Test that cast must be a list of strings. Passing invalid types raises ValidationError."""
     # cast with non-string element should raise an error
     with pytest.raises(ValidationError):
         Movie(
@@ -40,10 +36,7 @@ def test_movie_cast_must_be_list_of_strings():
 
 
 def test_movie_required_fields():
-    """
-    Test that all required fields (title, director, composer, cast) must be present.
-    Omitting any required field should raise ValidationError.
-    """
+    """Test that required fields must be present. Omitting any raises ValidationError."""
     # Missing title
     with pytest.raises(ValidationError):
         Movie(
@@ -67,10 +60,7 @@ def test_movie_required_fields():
 
 
 def test_movie_year_must_be_int_or_none():
-    """
-    Test that year must be either an int or omitted (None).
-    Passing invalid type should raise a ValidationError.
-    """
+    """Test that year must be an int or None. Invalid types raise ValidationError."""
     with pytest.raises(ValidationError):
         Movie(
             title="Bad Year",

@@ -1,3 +1,5 @@
+"""Logger module with colored output for better CLI readability."""
+
 import inspect
 import logging
 import sys
@@ -14,7 +16,10 @@ RESET_COLOR = "\033[0m"
 
 
 class ColoredFormatter(logging.Formatter):
+    """Custom logging formatter that adds color and source metadata."""
+
     def format(self, record: logging.LogRecord) -> str:
+        """Format log record with color and metadata."""
         color = COLOR_MAP.get(record.levelname, "")
         reset = RESET_COLOR if color else ""
         timestamp = self.formatTime(record, datefmt="%Y-%m-%d %H:%M:%S")
@@ -28,7 +33,7 @@ class ColoredFormatter(logging.Formatter):
             while frame:
                 if frame.f_code.co_name == func_name:
                     if "self" in frame.f_locals:
-                        cls_name = frame.locals["self"].__class__.__name__
+                        cls_name = frame.f_locals["self"].__class__.__name__
                     break
                 frame = frame.f_back
         except Exception:

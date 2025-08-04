@@ -1,3 +1,5 @@
+"""Module defining MovieDatabaseFromAPI for fetching and building a movie database from TMDb API."""
+
 import time
 
 from pydantic import Field, PositiveInt

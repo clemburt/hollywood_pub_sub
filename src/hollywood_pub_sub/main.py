@@ -1,3 +1,5 @@
+"""Main CLI entry point for the Hollywood Publisher-Subscriber movie game."""
+
 import argparse
 import os
 from pathlib import Path
@@ -68,21 +70,13 @@ def run_game(
 
 
 def print_composers() -> None:
-    """
-    Print the list of composers from ComposerSettings.
-    """
+    """Print the list of composers from ComposerSettings."""
     composers = ComposerSettings().composers
     logger.info("List of composers:\n" + "\n".join(f"🎶 {composer}" for composer in composers))
 
 
 def main() -> None:
-    """
-    Main CLI entry point.
-
-    Handles:
-    - 'run': run the Publisher-Subscriber movie game
-    - 'db': list available composers
-    """
+    """Run the CLI for the Publisher-Subscriber movie game."""
     parser = argparse.ArgumentParser(description="🎬 Hollywood Publisher-Subscriber CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
