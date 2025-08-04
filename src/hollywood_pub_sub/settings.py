@@ -1,14 +1,12 @@
-from typing import List
+"""Settings module defining ComposerSettings with a list of composer names and environment support."""
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class ComposerSettings(BaseSettings):
-    """
-    Composer settings that can be extended with env support if needed.
-    """
+    """Composer settings that can be extended with env support if needed."""
 
-    composers: List[str] = [
+    composers: list[str] = [
         "Alex North",
         "Alexandre Desplat",
         "Angela Morley",

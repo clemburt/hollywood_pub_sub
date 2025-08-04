@@ -1,3 +1,5 @@
+"""Pytest configuration and fixtures to adjust logging during tests."""
+
 import logging
 
 import pytest

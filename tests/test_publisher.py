@@ -1,12 +1,11 @@
+"""Unit tests for the Publisher class in hollywood_pub_sub."""
+
 from hollywood_pub_sub.movie import Movie
 from hollywood_pub_sub.publisher import Publisher
 
 
 def test_subscribe_and_publish(monkeypatch):
-    """
-    Test that subscribing a callback registers it,
-    and publishing a movie calls the callback exactly once with the correct movie.
-    """
+    """Test that subscribing registers a callback and publishing calls it once with the correct movie."""
     # Create a sample movie instance
     movie = Movie(
         title="Inception",
@@ -40,10 +39,8 @@ def test_subscribe_and_publish(monkeypatch):
 
 
 def test_publish_multiple_subscribers():
-    """
-    Test that multiple subscribers receive the published movie notification,
-    and that their callbacks are called in the order they were subscribed.
-    """
+    """Test multiple subscribers receive notifications in subscription order."""
+    # Create a sample movie instance
     movie = Movie(
         title="The Dark Knight",
         director="Christopher Nolan",
@@ -51,6 +48,7 @@ def test_publish_multiple_subscribers():
         cast=["Christian Bale", "Heath Ledger"],
         year=2008,
     )
+    # Initialize publisher with the movie
     publisher = Publisher(movies=[movie])
 
     # List to record the order and titles received by callbacks
@@ -78,10 +76,8 @@ def test_publish_multiple_subscribers():
 
 
 def test_no_subscribers_publish():
-    """
-    Test that publishing a movie when there are no subscribers
-    does not raise an error or exception.
-    """
+    """Test publishing with no subscribers does not raise errors."""
+    # Create a sample movie instance
     movie = Movie(
         title="Interstellar",
         director="Christopher Nolan",
@@ -89,6 +85,7 @@ def test_no_subscribers_publish():
         cast=["Matthew McConaughey", "Anne Hathaway"],
         year=2014,
     )
+    # Initialize publisher with the movie
     publisher = Publisher(movies=[movie])
 
     # Call publish with no subscribers — should run silently without errors

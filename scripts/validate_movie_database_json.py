@@ -1,10 +1,13 @@
-import sys
+"""Script to validate the movie_database.json file against the Movie schema."""
+
 from pathlib import Path
+import sys
 
 from hollywood_pub_sub.movie_database_from_json import MovieDatabaseFromJSON
 
 
 def main():
+    """Validate the JSON file and print result."""
     path = Path("src/hollywood_pub_sub/movie_database.json")
     try:
         MovieDatabaseFromJSON.from_json(path)

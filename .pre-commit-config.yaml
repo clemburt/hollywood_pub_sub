@@ -2,10 +2,27 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
+      # Remove trailing whitespace
       - id: trailing-whitespace
+      # Ensure files end with a newline
       - id: end-of-file-fixer
+      # Validate JSON files
+      - id: check-json
+      # Validate YAML files
       - id: check-yaml
+      # Prevent accidental commits of very large files
       - id: check-added-large-files
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.7
+    hooks:
+      - id: ruff
+        # Automatically fix linting issues where possible
+        args: [--fix]
+        name: ruff-lint-and-fix
+      - id: ruff-format
+        name: ruff-code-formatter
+
   - repo: local
     hooks:
       - id: validate-json-pydantic
@@ -13,15 +30,3 @@ repos:
         entry: pdm run python scripts/validate_movie_database_json.py
         language: system
         files: ^src/hollywood_pub_sub/movie_database\.json$
-      - id: run-black
-        name: Format all Python files with black
-        entry: pdm run black .
-        language: system
-        types: [python]
-        files: \.py$
-      - id: run-isort
-        name: Format all Python files with isort
-        entry: pdm run isort .
-        language: system
-        types: [python]
-        files: \.py$

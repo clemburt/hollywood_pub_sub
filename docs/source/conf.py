@@ -1,9 +1,16 @@
+"""
+Sphinx configuration file for the bowie_api_rest project documentation.
+
+This file contains settings and extensions used to generate the project documentation.
+"""
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 import os
 import sys
+
 
 # Add the src directory to sys.path so autodoc can find your modules
 sys.path.insert(0, os.path.abspath("../../src"))

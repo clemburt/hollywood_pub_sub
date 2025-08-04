@@ -1,18 +1,18 @@
+"""Unit tests for the Subscriber class in hollywood_pub_sub."""
+
 from hollywood_pub_sub.movie import Movie
 from hollywood_pub_sub.subscriber import Subscriber
 
 
 def make_movie(title="Title", composer="Composer", director="Director", year=2000):
-    """
-    Helper function to quickly create a Movie instance with default or given values.
-    """
+    """Create a Movie instance with default or given values."""
     return Movie(title=title, composer=composer, director=director, cast=[], year=year)
 
 
 def test_on_movie_published_increments_and_stores(monkeypatch):
     """
-    Test that on_movie_published increments the movie count and stores the movie correctly
-    only when the composer matches the subscriber's name.
+    Test that on_movie_published increments the movie count and stores the movie correctly only when the composer matches the subscriber's name.
+
     Also test that announce_win is called when threshold is reached.
     """
     sub = Subscriber(name="Hans Zimmer", winning_threshold=2)
@@ -49,10 +49,7 @@ def test_on_movie_published_increments_and_stores(monkeypatch):
 
 
 def test_has_won_behavior():
-    """
-    Test the has_won() method returns True only when movies_count
-    is at or above the winning_threshold.
-    """
+    """Test the has_won() method returns True only when movies_count is at or above the winning_threshold."""
     sub = Subscriber(name="John Williams", winning_threshold=3)
 
     # Initially, subscriber hasn't won
@@ -68,16 +65,12 @@ def test_has_won_behavior():
 
 
 def test_announce_win_logs(monkeypatch):
-    """
-    Test that announce_win() logs the winning message and filmography correctly.
-    """
+    """Test that announce_win() logs the winning message and filmography correctly."""
     # Create subscriber with a low winning threshold to trigger easily
     sub = Subscriber(name="Alex North", winning_threshold=1)
 
     # Add a sample movie to subscriber's won list
-    movie = make_movie(
-        title="Spartacus", composer="Alex North", director="Stanley Kubrick", year=1960
-    )
+    movie = make_movie(title="Spartacus", composer="Alex North", director="Stanley Kubrick", year=1960)
     sub.movies_won.append(movie)
 
     logged_messages = []
@@ -96,12 +89,7 @@ def test_announce_win_logs(monkeypatch):
     sub.announce_win()
 
     # Check that the winning announcement message was logged
-    assert any(
-        "🏆 Subscriber composer Alex North has reached the winning threshold!" in msg
-        for msg in logged_messages
-    )
+    assert any("🏆 Subscriber composer Alex North has reached the winning threshold!" in msg for msg in logged_messages)
 
     # Check that the filmography entry is logged correctly
-    assert any(
-        "1) Spartacus (1960) by Stanley Kubrick" in msg for msg in logged_messages
-    )
+    assert any("1) Spartacus (1960) by Stanley Kubrick" in msg for msg in logged_messages)

@@ -1,3 +1,5 @@
+"""Generate the movie_database.json file by querying the TMDB API."""
+
 import os
 from pathlib import Path
 
@@ -6,11 +8,12 @@ from hollywood_pub_sub.movie_database_from_api import MovieDatabaseFromAPI
 
 def main() -> None:
     """
-    Generate file movie_database.json by querying the TMDB api
+    Generate the movie_database.json file by querying the TMDB API.
 
     Returns
     -------
     None
+
     """
     # Build movie database with movies from TMDb API
     api_key = os.getenv("TMDB_API_KEY")

@@ -1,31 +1,16 @@
-from typing import List
+"""Module defining the Movie model used to represent film entries."""
 
 from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
 
 class Movie(BaseSettings):
-    """
-    Movie model representing a single film entry.
-
-    Attributes
-    ----------
-    title : str
-        The title of the movie.
-    director : str
-        The director of the movie.
-    composer : str
-        The composer of the soundtrack.
-    cast : List[str]
-        List of main cast members.
-    year : int
-        The release year of the movie.
-    """
+    """Movie model representing a single film entry."""
 
     title: str
     director: str
     composer: str
-    cast: List[str]
+    cast: list[str]
     year: int
 
     model_config = ConfigDict(extra="forbid")  # Disallow unexpected fields

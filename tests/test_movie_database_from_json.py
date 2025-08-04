@@ -1,3 +1,5 @@
+"""Test module for MovieDatabaseFromJSON class."""
+
 from pathlib import Path
 
 import pytest
@@ -8,8 +10,9 @@ from hollywood_pub_sub.movie_database_from_json import MovieDatabaseFromJSON
 @pytest.fixture
 def movie_db_json_path() -> Path:
     """
-    Provides the path to the fixed movie database JSON fixture.
-    Assumes the file exists at tests/fixtures/movie_database.json
+    Provide the path to the fixed movie database JSON fixture.
+
+    Assumes the file exists at tests/fixtures/movie_database.json.
     """
     path = Path("tests/fixtures/movie_database.json")
     if not path.is_file():
@@ -19,16 +22,30 @@ def movie_db_json_path() -> Path:
 
 @pytest.fixture
 def movie_db(movie_db_json_path: Path) -> MovieDatabaseFromJSON:
-    # Load the database from the JSON file using the class method
+    """
+    Load the movie database from a JSON file.
+
+    Uses the from_json class method to create a MovieDatabaseFromJSON instance.
+    """
     return MovieDatabaseFromJSON.from_json(movie_db_json_path)
 
 
 def test_movies_loaded(movie_db):
+    """
+    Verify that the movie database loads the correct number of movies.
+
+    The test expects 25 movies in the JSON fixture.
+    """
     # The JSON contains 25 movies
     assert len(movie_db.movies) == 25
 
 
 def test_unique_composers(movie_db):
+    """
+    Check that the composers property returns a sorted list of unique composer names.
+
+    Also asserts that known composers exist in the list.
+    """
     composers = movie_db.composers
     # Check that all composers are strings and the list is sorted
     assert all(isinstance(c, str) for c in composers)
@@ -39,11 +56,21 @@ def test_unique_composers(movie_db):
 
 
 def test_first_movie_title(movie_db):
+    """
+    Confirm the first movie loaded has the expected title.
+
+    This checks the order of movies loaded from JSON.
+    """
     # The first movie in the list should have the correct title (here: Citizen Kane)
     assert movie_db.movies[0].title == "Citizen Kane"
 
 
 def test_find_movies_by_director(movie_db):
+    """
+    Test filtering movies by a specific director.
+
+    Verifies that Orson Welles movies exist and the count matches expectations.
+    """
     # Manually filter movies by director
     orson_movies = [m for m in movie_db.movies if m.director == "Orson Welles"]
     titles = [m.title for m in orson_movies]
@@ -53,6 +80,11 @@ def test_find_movies_by_director(movie_db):
 
 
 def test_find_movies_by_year(movie_db):
+    """
+    Test filtering movies by release year.
+
+    Confirms that two Michel Legrand films from 1983 exist.
+    """
     # Find movies released in 1983 (Michel Legrand has 2 films that year)
     movies_1983 = [m for m in movie_db.movies if m.year == 1983]
     titles = [m.title for m in movies_1983]
@@ -62,6 +94,11 @@ def test_find_movies_by_year(movie_db):
 
 
 def test_movie_cast_contains_actor(movie_db):
+    """
+    Verify that a specific actor appears in the cast of at least one movie.
+
+    Checks for Harrison Ford in the cast of some movies.
+    """
     # Check that a specific actor appears in the cast of at least one movie
     actor = "Harrison Ford"
     movies_with_actor = [m for m in movie_db.movies if actor in m.cast]
@@ -72,6 +109,11 @@ def test_movie_cast_contains_actor(movie_db):
 
 
 def test_composers_property_consistency(movie_db):
+    """
+    Ensure the composers property matches the unique composers present in the movies.
+
+    This verifies internal consistency of the MovieDatabaseFromJSON instance.
+    """
     # Verify that the composers property matches the unique composers in the movies
     all_composers = set(m.composer for m in movie_db.movies)
     composers_property = set(movie_db.composers)
