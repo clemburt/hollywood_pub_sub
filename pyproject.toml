@@ -1,5 +1,6 @@
 [project]
 name = "hollywood_pub_sub"
+# Version will be dynamically determined at build time instead of hardcoded here
 dynamic = ["version"]
 description = "A publisher-subscriber game between directors and composers"
 authors = [
