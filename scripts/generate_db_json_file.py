@@ -11,6 +11,7 @@ def main() -> None:
     Returns
     -------
     None
+
     """
     # Build movie database with movies from TMDb API
     api_key = os.getenv("TMDB_API_KEY")

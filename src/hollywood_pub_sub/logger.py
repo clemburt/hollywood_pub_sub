@@ -2,6 +2,7 @@ import inspect
 import logging
 import sys
 
+
 COLOR_MAP = {
     "DEBUG": "\033[36m",  # Cyan
     "INFO": "\033[32m",  # Green

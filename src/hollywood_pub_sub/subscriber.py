@@ -17,6 +17,7 @@ class Subscriber:
         Number of movies required to declare this subscriber as winner.
     movies_won : list[Movie]
         List of movies assigned to the composer.
+
     """
 
     def __init__(self, name: str, winning_threshold: int):
@@ -29,6 +30,7 @@ class Subscriber:
             Subscriber (composer) name.
         winning_threshold : int, optional
             Number of movies to reach to win.
+
         """
         self.name = name
         self.movies_count = 0
@@ -43,6 +45,7 @@ class Subscriber:
         ----------
         movie : Movie
             Published movie object.
+
         """
         if movie.composer == self.name:
             self.movies_count += 1
@@ -63,6 +66,7 @@ class Subscriber:
         -------
         bool
             True if movies_count >= winning_threshold, else False.
+
         """
         return self.movies_count >= self.winning_threshold
 

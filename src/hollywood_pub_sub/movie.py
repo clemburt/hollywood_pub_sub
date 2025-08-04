@@ -1,5 +1,3 @@
-from typing import List
-
 from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
@@ -20,12 +18,13 @@ class Movie(BaseSettings):
         List of main cast members.
     year : int
         The release year of the movie.
+
     """
 
     title: str
     director: str
     composer: str
-    cast: List[str]
+    cast: list[str]
     year: int
 
     model_config = ConfigDict(extra="forbid")  # Disallow unexpected fields

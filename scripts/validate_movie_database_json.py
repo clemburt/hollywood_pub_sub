@@ -1,5 +1,5 @@
-import sys
 from pathlib import Path
+import sys
 
 from hollywood_pub_sub.movie_database_from_json import MovieDatabaseFromJSON
 

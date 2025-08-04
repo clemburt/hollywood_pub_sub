@@ -1,7 +1,6 @@
-import json
 from abc import ABC, abstractmethod
+import json
 from pathlib import Path
-from typing import List, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, validate_call
 
@@ -23,25 +22,26 @@ class MovieDatabase(BaseModel, ABC):
 
     @property
     @abstractmethod
-    def movies(self) -> List[Movie]:
+    def movies(self) -> list[Movie]:
         """
         List of Movie instances. Must be implemented by subclasses.
 
         Returns
         -------
         List[Movie]
+
         """
         raise NotImplementedError("Subclasses must implement the 'movies' property.")
 
     @validate_call
     def filter(
         self,
-        title: Optional[str] = None,
-        director: Optional[str] = None,
-        composer: Optional[str] = None,
-        year: Optional[int] = None,
-        cast: Optional[Union[str, List[str]]] = None,
-    ) -> List[Movie]:
+        title: str | None = None,
+        director: str | None = None,
+        composer: str | None = None,
+        year: int | None = None,
+        cast: str | list[str] | None = None,
+    ) -> list[Movie]:
         """
         Filter movies based on various attributes.
 
@@ -62,8 +62,9 @@ class MovieDatabase(BaseModel, ABC):
         -------
         List[Movie]
             Filtered list of movies matching all specified criteria.
+
         """
-        cast_filter: Optional[List[str]] = [cast] if isinstance(cast, str) else cast
+        cast_filter: list[str] | None = [cast] if isinstance(cast, str) else cast
 
         def match(movie: Movie) -> bool:
             if title and movie.title != title:
@@ -81,7 +82,7 @@ class MovieDatabase(BaseModel, ABC):
         return [movie for movie in self.movies if match(movie)]
 
     @validate_call
-    def to_json(self, path: Optional[Path] = None, indent: int = 4) -> Optional[str]:
+    def to_json(self, path: Path | None = None, indent: int = 4) -> str | None:
         """
         Export movies to JSON format.
 
@@ -96,6 +97,7 @@ class MovieDatabase(BaseModel, ABC):
         -------
         Optional[str]
             JSON string if no path is provided, otherwise None.
+
         """
         data = [movie.model_dump() for movie in self.movies]
         json_str = json.dumps(data, indent=indent, ensure_ascii=False)

@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Optional, Union
 
 from hollywood_pub_sub.movie_database import MovieDatabase
 from hollywood_pub_sub.movie_database_from_api import MovieDatabaseFromAPI
@@ -8,8 +7,8 @@ from hollywood_pub_sub.movie_database_from_json import MovieDatabaseFromJSON
 
 def movie_database_factory(
     max_movies_per_composer: int,
-    api_key: Optional[str] = None,
-    json_path: Optional[Union[str, Path]] = None,
+    api_key: str | None = None,
+    json_path: str | Path | None = None,
 ) -> MovieDatabase:
     """
     Factory function to build a MovieDatabase from either a JSON file or the TMDb API.
@@ -32,6 +31,7 @@ def movie_database_factory(
     ------
     ValueError
         If neither `json_path` nor `api_key` is provided.
+
     """
     if json_path is not None:
         return MovieDatabaseFromJSON.from_json(Path(json_path))

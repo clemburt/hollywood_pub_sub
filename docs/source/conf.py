@@ -5,6 +5,7 @@
 import os
 import sys
 
+
 # Add the src directory to sys.path so autodoc can find your modules
 sys.path.insert(0, os.path.abspath("../../src"))
 

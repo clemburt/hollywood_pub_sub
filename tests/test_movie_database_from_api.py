@@ -1,4 +1,3 @@
-from typing import Optional
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -12,9 +11,7 @@ def fake_api_key() -> str:
 
 
 @patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.tmdb_get")
-def test_search_person_returns_valid_composer_id(
-    mock_tmdb_get: MagicMock, fake_api_key: str
-) -> None:
+def test_search_person_returns_valid_composer_id(mock_tmdb_get: MagicMock, fake_api_key: str) -> None:
     mock_tmdb_get.return_value = {
         "results": [
             {
@@ -31,32 +28,22 @@ def test_search_person_returns_valid_composer_id(
             },
         ]
     }
-    db = MovieDatabaseFromAPI(
-        api_key=fake_api_key, max_movies_per_composer=1, composers=["Hans Zimmer"]
-    )
-    composer_id: Optional[int] = db.search_person("Hans Zimmer")
+    db = MovieDatabaseFromAPI(api_key=fake_api_key, max_movies_per_composer=1, composers=["Hans Zimmer"])
+    composer_id: int | None = db.search_person("Hans Zimmer")
     assert composer_id == 555
 
 
 @patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.tmdb_get")
-def test_get_person_credits_returns_crew_dict(
-    mock_tmdb_get: MagicMock, fake_api_key: str
-) -> None:
-    mock_tmdb_get.return_value = {
-        "crew": [{"job": "Composer", "id": 1, "title": "Test Movie"}]
-    }
-    db = MovieDatabaseFromAPI(
-        api_key=fake_api_key, max_movies_per_composer=1, composers=["Hans Zimmer"]
-    )
+def test_get_person_credits_returns_crew_dict(mock_tmdb_get: MagicMock, fake_api_key: str) -> None:
+    mock_tmdb_get.return_value = {"crew": [{"job": "Composer", "id": 1, "title": "Test Movie"}]}
+    db = MovieDatabaseFromAPI(api_key=fake_api_key, max_movies_per_composer=1, composers=["Hans Zimmer"])
     credits = db.get_person_credits(123)
     assert isinstance(credits, dict)
     assert "crew" in credits
 
 
 @patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.tmdb_get")
-def test_get_movie_details_extracts_director_and_cast(
-    mock_tmdb_get: MagicMock, fake_api_key: str
-) -> None:
+def test_get_movie_details_extracts_director_and_cast(mock_tmdb_get: MagicMock, fake_api_key: str) -> None:
     mock_tmdb_get.return_value = {
         "title": "Inception",
         "release_date": "2010-07-16",
@@ -72,9 +59,7 @@ def test_get_movie_details_extracts_director_and_cast(
             ],
         },
     }
-    db = MovieDatabaseFromAPI(
-        api_key=fake_api_key, max_movies_per_composer=1, composers=["Hans Zimmer"]
-    )
+    db = MovieDatabaseFromAPI(api_key=fake_api_key, max_movies_per_composer=1, composers=["Hans Zimmer"])
     details = db.get_movie_details(1)
     director = db.extract_director(details)
     main_cast = db.extract_main_cast(credits=details["credits"], max_cast=3)
@@ -85,12 +70,8 @@ def test_get_movie_details_extracts_director_and_cast(
 
 
 @patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.search_person")
-@patch(
-    "hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.get_person_credits"
-)
-@patch(
-    "hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.get_movie_details"
-)
+@patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.get_person_credits")
+@patch("hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI.get_movie_details")
 def test_build_populates_movies(
     mock_get_movie_details: MagicMock,
     mock_get_person_credits: MagicMock,
@@ -125,9 +106,7 @@ def test_build_populates_movies(
     ]
 
     # Instantiate after mocks are set to intercept _build calls inside __init__
-    db = MovieDatabaseFromAPI(
-        api_key=fake_api_key, max_movies_per_composer=2, composers=["Fake Composer"]
-    )
+    db = MovieDatabaseFromAPI(api_key=fake_api_key, max_movies_per_composer=2, composers=["Fake Composer"])
 
     assert len(db.movies) == 2
     assert db.movies[0].composer == "Fake Composer"

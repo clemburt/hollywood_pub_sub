@@ -1,6 +1,6 @@
+from pathlib import Path
 import sys
 import types
-from pathlib import Path
 from unittest.mock import MagicMock
 
 import pytest
@@ -47,9 +47,7 @@ def fake_movie_db(fake_movies):
 
 def test_run_game_exits_without_api_key_or_json(monkeypatch):
     monkeypatch.setattr(main.logger, "error", MagicMock())
-    monkeypatch.setattr(
-        sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code))
-    )
+    monkeypatch.setattr(sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code)))
 
     with pytest.raises(SystemExit):
         main.run_game(json_path=None, api_key=None)
@@ -72,9 +70,7 @@ def test_run_game_runs_with_json(monkeypatch, fake_movie_db):
     fake_subscriber.has_won.return_value = False
     fake_subscriber.movies_count = 0
     # We will have one subscriber per composer
-    monkeypatch.setattr(
-        main, "Subscriber", lambda name, winning_threshold: fake_subscriber
-    )
+    monkeypatch.setattr(main, "Subscriber", lambda name, winning_threshold: fake_subscriber)
 
     # Patch logger to suppress output
     monkeypatch.setattr(main.logger, "info", MagicMock())
@@ -98,9 +94,7 @@ def test_run_game_runs_with_json(monkeypatch, fake_movie_db):
 
 def test_print_composers(monkeypatch):
     # Patch ComposerSettings to return known composers
-    monkeypatch.setattr(
-        main, "ComposerSettings", lambda: types.SimpleNamespace(composers=["C1", "C2"])
-    )
+    monkeypatch.setattr(main, "ComposerSettings", lambda: types.SimpleNamespace(composers=["C1", "C2"]))
     monkeypatch.setattr(main.logger, "info", MagicMock())
 
     main.print_composers()
@@ -137,14 +131,10 @@ def test_main_db_command(monkeypatch):
 
 
 def test_main_invalid_json_path(monkeypatch):
-    monkeypatch.setattr(
-        sys, "argv", ["prog", "run", "--json_path", "/nonexistent/path.json"]
-    )
+    monkeypatch.setattr(sys, "argv", ["prog", "run", "--json_path", "/nonexistent/path.json"])
     monkeypatch.setattr(main.logger, "error", MagicMock())
     monkeypatch.setattr(Path, "exists", lambda self: False)
-    monkeypatch.setattr(
-        sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code))
-    )
+    monkeypatch.setattr(sys, "exit", lambda code=0: (_ for _ in ()).throw(SystemExit(code)))
 
     with pytest.raises(SystemExit):
         main.main()

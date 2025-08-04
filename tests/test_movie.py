@@ -1,5 +1,5 @@
-import pytest
 from pydantic import ValidationError
+import pytest
 
 from hollywood_pub_sub.movie import Movie
 
@@ -55,15 +55,11 @@ def test_movie_required_fields():
 
     # Missing director
     with pytest.raises(ValidationError):
-        Movie(
-            title="Title", composer="Composer", cast=["Actor A", "Actor B"], year=2000
-        )
+        Movie(title="Title", composer="Composer", cast=["Actor A", "Actor B"], year=2000)
 
     # Missing composer
     with pytest.raises(ValidationError):
-        Movie(
-            title="Title", director="Director", cast=["Actor A", "Actor B"], year=2000
-        )
+        Movie(title="Title", director="Director", cast=["Actor A", "Actor B"], year=2000)
 
     # Missing cast
     with pytest.raises(ValidationError):
