@@ -133,10 +133,12 @@
 </section>
 <section id="module-hollywood_pub_sub.logger">
 <span id="hollywood-pub-sub-logger-module"></span><h2>hollywood_pub_sub.logger module<a class="headerlink" href="#module-hollywood_pub_sub.logger" title="Link to this heading"></a></h2>
+<p>Logger module with colored output for better CLI readability.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="hollywood_pub_sub.logger.ColoredFormatter">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.logger.</span></span><span class="sig-name descname"><span class="pre">ColoredFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.logger.ColoredFormatter" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></p>
+<p>Custom logging formatter that adds color and source metadata.</p>
 <p>Initialize the formatter with specified format strings.</p>
 <p>Initialize the formatter either with the specified format string, or a
 default as described above. Allow for specialized date formatting with
@@ -188,15 +190,7 @@ When ‘seconds’ is not passed in, convert the current time instead.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="hollywood_pub_sub.logger.ColoredFormatter.format">
 <span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.logger.ColoredFormatter.format" title="Link to this definition"></a></dt>
-<dd><p>Format the specified record as text.</p>
-<p>The record’s attribute dictionary is used as the operand to a
-string formatting operation which yields the returned string.
-Before formatting the dictionary, a couple of preparatory steps
-are carried out. The message attribute of the record is computed
-using LogRecord.getMessage(). If the formatting string uses the
-time (as determined by a call to usesTime(), formatTime() is
-called to format the event time. If there is exception information,
-it is formatted using formatException() and appended to the message.</p>
+<dd><p>Format log record with color and metadata.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
@@ -258,13 +252,11 @@ set the ‘converter’ attribute in the Formatter class.</p>
 </section>
 <section id="module-hollywood_pub_sub.main">
 <span id="hollywood-pub-sub-main-module"></span><h2>hollywood_pub_sub.main module<a class="headerlink" href="#module-hollywood_pub_sub.main" title="Link to this heading"></a></h2>
+<p>Main CLI entry point for the Hollywood Publisher-Subscriber movie game.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="hollywood_pub_sub.main.main">
 <span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.main.main" title="Link to this definition"></a></dt>
-<dd><p>Main CLI entry point.</p>
-<p>Handles:
-- ‘run’: run the Publisher-Subscriber movie game
-- ‘db’: list available composers</p>
+<dd><p>Run the CLI for the Publisher-Subscriber movie game.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
@@ -305,66 +297,12 @@ set the ‘converter’ attribute in the Formatter class.</p>
 </section>
 <section id="module-hollywood_pub_sub.movie">
 <span id="hollywood-pub-sub-movie-module"></span><h2>hollywood_pub_sub.movie module<a class="headerlink" href="#module-hollywood_pub_sub.movie" title="Link to this heading"></a></h2>
+<p>Module defining the Movie model used to represent film entries.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.movie.</span></span><span class="sig-name descname"><span class="pre">Movie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_case_sensitive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_nested_model_default_partial_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('.')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_file_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_ignore_empty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_nested_delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_nested_max_split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_parse_none_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_parse_enums</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_prog_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_parse_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_settings_source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_parse_none_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_hide_none_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_avoid_json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_enforce_required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_use_class_docs_for_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_exit_on_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_flag_prefix_char</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_implicit_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_ignore_unknown_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_kebab_case</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_shortcuts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_secrets_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.movie.Movie" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSettings</span></code></p>
 <p>Movie model representing a single film entry.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.title">
-<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.title" title="Link to this definition"></a></dt>
-<dd><p>The title of the movie.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.director">
-<span class="sig-name descname"><span class="pre">director</span></span><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.director" title="Link to this definition"></a></dt>
-<dd><p>The director of the movie.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.composer">
-<span class="sig-name descname"><span class="pre">composer</span></span><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.composer" title="Link to this definition"></a></dt>
-<dd><p>The composer of the soundtrack.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.cast">
-<span class="sig-name descname"><span class="pre">cast</span></span><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.cast" title="Link to this definition"></a></dt>
-<dd><p>List of main cast members.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[str]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.year">
-<span class="sig-name descname"><span class="pre">year</span></span><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.year" title="Link to this definition"></a></dt>
-<dd><p>The release year of the movie.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
 validated to form a valid model.</p>
@@ -379,13 +317,13 @@ validated to form a valid model.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">cast</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.cast">
+<span class="sig-name descname"><span class="pre">cast</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.cast" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">composer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.composer">
+<span class="sig-name descname"><span class="pre">composer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.composer" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -434,8 +372,8 @@ deep: If True, the values of fields that are Pydantic models will be deep-copied
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">director</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.director">
+<span class="sig-name descname"><span class="pre">director</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.director" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -862,8 +800,8 @@ file_secret_settings: The <cite>SecretsSettingsSource</cite> instance.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.title" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -887,8 +825,8 @@ file_secret_settings: The <cite>SecretsSettingsSource</cite> instance.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id4">
-<span class="sig-name descname"><span class="pre">year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="hollywood_pub_sub.movie.Movie.year">
+<span class="sig-name descname"><span class="pre">year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#hollywood_pub_sub.movie.Movie.year" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -896,6 +834,7 @@ file_secret_settings: The <cite>SecretsSettingsSource</cite> instance.</p>
 </section>
 <section id="module-hollywood_pub_sub.movie_database">
 <span id="hollywood-pub-sub-movie-database-module"></span><h2>hollywood_pub_sub.movie_database module<a class="headerlink" href="#module-hollywood_pub_sub.movie_database" title="Link to this heading"></a></h2>
+<p>Module defining the abstract MovieDatabase base class for handling movie collections.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="hollywood_pub_sub.movie_database.MovieDatabase">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.movie_database.</span></span><span class="sig-name descname"><span class="pre">MovieDatabase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.movie_database.MovieDatabase" title="Link to this definition"></a></dt>
@@ -968,11 +907,11 @@ deep: If True, the values of fields that are Pydantic models will be deep-copied
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>title</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact title to match.</p></li>
-<li><p><strong>director</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact director name to match.</p></li>
-<li><p><strong>composer</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact composer name to match.</p></li>
-<li><p><strong>year</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – Release year to match.</p></li>
-<li><p><strong>cast</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – One or more cast members that must appear in the movie.</p></li>
+<li><p><strong>title</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact title to match.</p></li>
+<li><p><strong>director</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact director name to match.</p></li>
+<li><p><strong>composer</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact composer name to match.</p></li>
+<li><p><strong>year</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Release year to match.</p></li>
+<li><p><strong>cast</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em>) – One or more cast members that must appear in the movie.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1339,12 +1278,7 @@ by_name: Whether to use the field’s name when validating against the provided 
 <dl class="py property">
 <dt class="sig sig-object py" id="hollywood_pub_sub.movie_database.MovieDatabase.movies">
 <em class="property"><span class="k"><span class="pre">abstract</span></span><span class="w"> </span><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">movies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#hollywood_pub_sub.movie.Movie" title="hollywood_pub_sub.movie.Movie"><span class="pre">Movie</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#hollywood_pub_sub.movie_database.MovieDatabase.movies" title="Link to this definition"></a></dt>
-<dd><p>List of Movie instances. Must be implemented by subclasses.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="#hollywood_pub_sub.movie.Movie" title="hollywood_pub_sub.movie.Movie">Movie</a>]</p>
-</dd>
-</dl>
+<dd><p>Return list of Movie instances (must be implemented by subclasses).</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1404,8 +1338,8 @@ by_name: Whether to use the field’s name when validating against the provided 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>Optional</em><em>[</em><em>Path</em><em>]</em><em>, </em><em>optional</em>) – Path to save the JSON file. If not provided, returns the JSON string.</p></li>
-<li><p><strong>indent</strong> (<em>int</em><em>, </em><em>optional</em>) – Indentation level for JSON formatting. Default is 4.</p></li>
+<li><p><strong>path</strong> (<em>Optional</em><em>[</em><em>Path</em><em>]</em>) – Path to save the JSON file. If not provided, returns the JSON string.</p></li>
+<li><p><strong>indent</strong> (<em>int</em>) – Indentation level for JSON formatting.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1442,10 +1376,11 @@ by_name: Whether to use the field’s name when validating against the provided 
 </section>
 <section id="module-hollywood_pub_sub.movie_database_factory">
 <span id="hollywood-pub-sub-movie-database-factory-module"></span><h2>hollywood_pub_sub.movie_database_factory module<a class="headerlink" href="#module-hollywood_pub_sub.movie_database_factory" title="Link to this heading"></a></h2>
+<p>Module for constructing a MovieDatabase from a JSON file or the TMDb API.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="hollywood_pub_sub.movie_database_factory.movie_database_factory">
 <span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.movie_database_factory.</span></span><span class="sig-name descname"><span class="pre">movie_database_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_movies_per_composer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.movie_database_factory.movie_database_factory" title="Link to this definition"></a></dt>
-<dd><p>Factory function to build a MovieDatabase from either a JSON file or the TMDb API.</p>
+<dd><p>Create a MovieDatabase from either a JSON file or the TMDb API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1469,6 +1404,7 @@ by_name: Whether to use the field’s name when validating against the provided 
 </section>
 <section id="module-hollywood_pub_sub.movie_database_from_api">
 <span id="hollywood-pub-sub-movie-database-from-api-module"></span><h2>hollywood_pub_sub.movie_database_from_api module<a class="headerlink" href="#module-hollywood_pub_sub.movie_database_from_api" title="Link to this heading"></a></h2>
+<p>Module defining MovieDatabaseFromAPI for fetching and building a movie database from TMDb API.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.movie_database_from_api.</span></span><span class="sig-name descname"><span class="pre">MovieDatabaseFromAPI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*,</span> <span class="pre">api_key:</span> <span class="pre">str,</span> <span class="pre">max_movies_per_composer:</span> <span class="pre">~typing.Annotated[int,</span> <span class="pre">~annotated_types.Gt(gt=0)],</span> <span class="pre">composers:</span> <span class="pre">list[str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;,</span> <span class="pre">BASE_URL:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'https://api.themoviedb.org/3'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.movie_database_from_api.MovieDatabaseFromAPI" title="Link to this definition"></a></dt>
@@ -1546,8 +1482,8 @@ Defaults to the list from ComposerSettings().</p></li>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id5">
-<span class="sig-name descname"><span class="pre">BASE_URL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">BASE_URL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1562,13 +1498,13 @@ Defaults to the list from ComposerSettings().</p></li>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id6">
-<span class="sig-name descname"><span class="pre">api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id7">
-<span class="sig-name descname"><span class="pre">composers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">composers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1660,11 +1596,11 @@ deep: If True, the values of fields that are Pydantic models will be deep-copied
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>title</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact title to match.</p></li>
-<li><p><strong>director</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact director name to match.</p></li>
-<li><p><strong>composer</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact composer name to match.</p></li>
-<li><p><strong>year</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – Release year to match.</p></li>
-<li><p><strong>cast</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – One or more cast members that must appear in the movie.</p></li>
+<li><p><strong>title</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact title to match.</p></li>
+<li><p><strong>director</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact director name to match.</p></li>
+<li><p><strong>composer</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact composer name to match.</p></li>
+<li><p><strong>year</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Release year to match.</p></li>
+<li><p><strong>cast</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em>) – One or more cast members that must appear in the movie.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1731,8 +1667,8 @@ deep: If True, the values of fields that are Pydantic models will be deep-copied
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id8">
-<span class="sig-name descname"><span class="pre">max_movies_per_composer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotated</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code><span class="pre">]</span></em><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">max_movies_per_composer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotated</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code><span class="pre">]</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -2178,8 +2114,8 @@ by_name: Whether to use the field’s name when validating against the provided 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>Optional</em><em>[</em><em>Path</em><em>]</em><em>, </em><em>optional</em>) – Path to save the JSON file. If not provided, returns the JSON string.</p></li>
-<li><p><strong>indent</strong> (<em>int</em><em>, </em><em>optional</em>) – Indentation level for JSON formatting. Default is 4.</p></li>
+<li><p><strong>path</strong> (<em>Optional</em><em>[</em><em>Path</em><em>]</em>) – Path to save the JSON file. If not provided, returns the JSON string.</p></li>
+<li><p><strong>indent</strong> (<em>int</em>) – Indentation level for JSON formatting.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -2216,12 +2152,13 @@ by_name: Whether to use the field’s name when validating against the provided 
 </section>
 <section id="module-hollywood_pub_sub.movie_database_from_json">
 <span id="hollywood-pub-sub-movie-database-from-json-module"></span><h2>hollywood_pub_sub.movie_database_from_json module<a class="headerlink" href="#module-hollywood_pub_sub.movie_database_from_json" title="Link to this heading"></a></h2>
+<p>Module providing MovieDatabaseFromJSON, a root model for movies loaded from JSON.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="hollywood_pub_sub.movie_database_from_json.MovieDatabaseFromJSON">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.movie_database_from_json.</span></span><span class="sig-name descname"><span class="pre">MovieDatabaseFromJSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PydanticUndefined</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.movie_database_from_json.MovieDatabaseFromJSON" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RootModel[list[Movie]]</span></code>, <a class="reference internal" href="#hollywood_pub_sub.movie_database.MovieDatabase" title="hollywood_pub_sub.movie_database.MovieDatabase"><code class="xref py py-class docutils literal notranslate"><span class="pre">MovieDatabase</span></code></a></p>
-<p>A root model representing a database of movies.
-Uses a list of Movie instances as its root.</p>
+<p>A root model representing a database of movies.</p>
+<p>Uses a list of Movie instances as its root.</p>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
 validated to form a valid model.</p>
@@ -2238,7 +2175,7 @@ validated to form a valid model.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="hollywood_pub_sub.movie_database_from_json.MovieDatabaseFromJSON.composers">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">composers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#hollywood_pub_sub.movie_database_from_json.MovieDatabaseFromJSON.composers" title="Link to this definition"></a></dt>
-<dd><p>Automatically derive the list of unique composers from the movies.</p>
+<dd><p>Return a sorted list of unique composers from the movies.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2293,11 +2230,11 @@ deep: If True, the values of fields that are Pydantic models will be deep-copied
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>title</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact title to match.</p></li>
-<li><p><strong>director</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact director name to match.</p></li>
-<li><p><strong>composer</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Exact composer name to match.</p></li>
-<li><p><strong>year</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – Release year to match.</p></li>
-<li><p><strong>cast</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – One or more cast members that must appear in the movie.</p></li>
+<li><p><strong>title</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact title to match.</p></li>
+<li><p><strong>director</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact director name to match.</p></li>
+<li><p><strong>composer</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Exact composer name to match.</p></li>
+<li><p><strong>year</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Release year to match.</p></li>
+<li><p><strong>cast</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em>) – One or more cast members that must appear in the movie.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -2671,7 +2608,7 @@ by_name: Whether to use the field’s name when validating against the provided 
 <dl class="py property">
 <dt class="sig sig-object py" id="hollywood_pub_sub.movie_database_from_json.MovieDatabaseFromJSON.movies">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">movies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#hollywood_pub_sub.movie.Movie" title="hollywood_pub_sub.movie.Movie"><span class="pre">Movie</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#hollywood_pub_sub.movie_database_from_json.MovieDatabaseFromJSON.movies" title="Link to this definition"></a></dt>
-<dd><p>Access the list of movies stored in the root.</p>
+<dd><p>Return the list of movies stored in the root.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2736,8 +2673,8 @@ by_name: Whether to use the field’s name when validating against the provided 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>Optional</em><em>[</em><em>Path</em><em>]</em><em>, </em><em>optional</em>) – Path to save the JSON file. If not provided, returns the JSON string.</p></li>
-<li><p><strong>indent</strong> (<em>int</em><em>, </em><em>optional</em>) – Indentation level for JSON formatting. Default is 4.</p></li>
+<li><p><strong>path</strong> (<em>Optional</em><em>[</em><em>Path</em><em>]</em>) – Path to save the JSON file. If not provided, returns the JSON string.</p></li>
+<li><p><strong>indent</strong> (<em>int</em>) – Indentation level for JSON formatting.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -2774,6 +2711,7 @@ by_name: Whether to use the field’s name when validating against the provided 
 </section>
 <section id="module-hollywood_pub_sub.publisher">
 <span id="hollywood-pub-sub-publisher-module"></span><h2>hollywood_pub_sub.publisher module<a class="headerlink" href="#module-hollywood_pub_sub.publisher" title="Link to this heading"></a></h2>
+<p>Module defining Publisher, which publishes movies to subscribed callbacks.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="hollywood_pub_sub.publisher.Publisher">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.publisher.</span></span><span class="sig-name descname"><span class="pre">Publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">movies</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.publisher.Publisher" title="Link to this definition"></a></dt>
@@ -2848,8 +2786,8 @@ by_name: Whether to use the field’s name when validating against the provided 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id9">
-<span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">movie</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">movie</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
 <dd><p>Publish a movie to all subscribers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2862,8 +2800,8 @@ by_name: Whether to use the field’s name when validating against the provided 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id10">
-<span class="sig-name descname"><span class="pre">subscribe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">subscribe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
 <dd><p>Subscribe a callback function to the publisher.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2881,6 +2819,7 @@ It should accept a single argument: the Movie instance.</p>
 </section>
 <section id="module-hollywood_pub_sub.settings">
 <span id="hollywood-pub-sub-settings-module"></span><h2>hollywood_pub_sub.settings module<a class="headerlink" href="#module-hollywood_pub_sub.settings" title="Link to this heading"></a></h2>
+<p>Settings module defining ComposerSettings with a list of composer names and environment support.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="hollywood_pub_sub.settings.ComposerSettings">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.settings.</span></span><span class="sig-name descname"><span class="pre">ComposerSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_case_sensitive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_nested_model_default_partial_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('.')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_file_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_ignore_empty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_nested_delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_nested_max_split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_parse_none_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env_parse_enums</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_prog_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_parse_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_settings_source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_parse_none_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_hide_none_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_avoid_json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_enforce_required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_use_class_docs_for_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_exit_on_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_flag_prefix_char</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_implicit_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_ignore_unknown_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_kebab_case</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_cli_shortcuts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_secrets_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.settings.ComposerSettings" title="Link to this definition"></a></dt>
@@ -3397,12 +3336,12 @@ file_secret_settings: The <cite>SecretsSettingsSource</cite> instance.</p>
 </section>
 <section id="module-hollywood_pub_sub.subscriber">
 <span id="hollywood-pub-sub-subscriber-module"></span><h2>hollywood_pub_sub.subscriber module<a class="headerlink" href="#module-hollywood_pub_sub.subscriber" title="Link to this heading"></a></h2>
+<p>Subscriber module handling the Subscriber class that listens to published movies and tracks wins.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="hollywood_pub_sub.subscriber.Subscriber">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hollywood_pub_sub.subscriber.</span></span><span class="sig-name descname"><span class="pre">Subscriber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">winning_threshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.subscriber.Subscriber" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Subscriber class that listens to published movies and tracks
-the number of movies composed by its composer name.</p>
+<p>Subscriber class that listens to published movies and tracks the number of movies composed by its composer name.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="hollywood_pub_sub.subscriber.Subscriber.name">
 <span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#hollywood_pub_sub.subscriber.Subscriber.name" title="Link to this definition"></a></dt>
@@ -3448,26 +3387,10 @@ the number of movies composed by its composer name.</p>
 </dd></dl>
 
 <p>Initialize a Subscriber.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – Subscriber (composer) name.</p></li>
-<li><p><strong>winning_threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of movies to reach to win.</p></li>
-</ul>
-</dd>
-</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="hollywood_pub_sub.subscriber.Subscriber.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">winning_threshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.subscriber.Subscriber.__init__" title="Link to this definition"></a></dt>
 <dd><p>Initialize a Subscriber.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – Subscriber (composer) name.</p></li>
-<li><p><strong>winning_threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of movies to reach to win.</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -3484,13 +3407,10 @@ the number of movies composed by its composer name.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="hollywood_pub_sub.subscriber.Subscriber.has_won">
 <span class="sig-name descname"><span class="pre">has_won</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.subscriber.Subscriber.has_won" title="Link to this definition"></a></dt>
-<dd><p>Check if the subscriber has reached the winning threshold.</p>
+<dd><p>Return True if movies_count &gt;= winning_threshold, else False.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>True if movies_count &gt;= winning_threshold, else False.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -3498,7 +3418,7 @@ the number of movies composed by its composer name.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="hollywood_pub_sub.subscriber.Subscriber.on_movie_published">
 <span class="sig-name descname"><span class="pre">on_movie_published</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">movie</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hollywood_pub_sub.subscriber.Subscriber.on_movie_published" title="Link to this definition"></a></dt>
-<dd><p>Callback invoked when a movie is published.</p>
+<dd><p>Invoke callback when a movie is published.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>movie</strong> (<a class="reference internal" href="#hollywood_pub_sub.movie.Movie" title="hollywood_pub_sub.movie.Movie"><em>Movie</em></a>) – Published movie object.</p>
@@ -3514,6 +3434,7 @@ the number of movies composed by its composer name.</p>
 </section>
 <section id="module-hollywood_pub_sub">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-hollywood_pub_sub" title="Link to this heading"></a></h2>
+<p>Hollywood Pub-Sub package for simulating composer/movie publishing game.</p>
 </section>
 </section>
 
