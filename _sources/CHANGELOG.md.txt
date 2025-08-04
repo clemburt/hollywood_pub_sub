@@ -4,6 +4,7 @@ All notable changes to the hollywood_pub_sub project will be documented in this 
 ## [0.1.3] - 2025-08-04
 ### Changed
 - Use ruff as pre-commit hooks linter
+### Fixed
 - Set dynamic version
 
 ## [0.1.2] - 2025-08-03
